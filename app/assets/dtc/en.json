@@ -1,0 +1,1043 @@
+{
+ "locale": "en",
+ "note": "Written for Drivly in plain language. Do not copy text from commercial DTC sites.",
+ "strings": {
+  "manufacturer": "Manufacturer-specific code",
+  "manufacturerMeaning": "Your car maker defines this code. Its exact meaning depends on the brand and model.",
+  "categoryMeaning": "We don't have a detailed explanation for this code yet. From its number, it belongs to: {category}.",
+  "fallbackAction": "Ask a garage to check it, or search online for this code together with your car model.",
+  "unknown": "Unknown problem",
+  "fuelAir": "Fuel and air mixture problem",
+  "ignition": "Ignition or misfire problem",
+  "emissions": "Emissions control problem",
+  "idle": "Speed, idle or cruise control problem",
+  "computer": "Engine computer or wiring problem",
+  "transmission": "Transmission problem",
+  "hybrid": "Hybrid system problem",
+  "engine": "Engine problem",
+  "body": "Body electronics problem",
+  "chassis": "Chassis problem (brakes, steering, suspension)",
+  "network": "Communication problem between car computers"
+ },
+ "codes": {
+  "P0300": {
+   "title": "Engine misfire, several cylinders",
+   "severity": "high",
+   "technicalTitle": "Random/multiple cylinder misfire detected",
+   "meaning": "The engine isn't burning fuel properly in more than one cylinder, so it runs unevenly.",
+   "symptoms": [
+    "Shaking or rough idle",
+    "Less power",
+    "Engine light may flash"
+   ],
+   "safeToDrive": "Short trips, gently. If the engine light flashes, stop: unburned fuel can damage the catalytic converter.",
+   "causes": [
+    "Worn spark plugs",
+    "Faulty ignition coils",
+    "Vacuum leak",
+    "Low fuel pressure"
+   ],
+   "action": "Book a garage visit soon."
+  },
+  "P0301": {
+   "title": "Engine misfire, cylinder 1",
+   "severity": "high",
+   "technicalTitle": "Cylinder 1 misfire detected",
+   "meaning": "Cylinder 1 isn't burning fuel properly, so the engine runs unevenly.",
+   "symptoms": [
+    "Shaking at idle",
+    "Less power when accelerating"
+   ],
+   "safeToDrive": "Short trips, gently. If the engine light flashes, stop: unburned fuel can damage the catalytic converter.",
+   "causes": [
+    "Worn spark plug",
+    "Faulty ignition coil",
+    "Clogged or leaking injector"
+   ],
+   "action": "Book a garage visit soon."
+  },
+  "P0302": {
+   "title": "Engine misfire, cylinder 2",
+   "severity": "high",
+   "technicalTitle": "Cylinder 2 misfire detected",
+   "meaning": "Cylinder 2 isn't burning fuel properly, so the engine runs unevenly.",
+   "symptoms": [
+    "Shaking at idle",
+    "Less power when accelerating"
+   ],
+   "safeToDrive": "Short trips, gently. If the engine light flashes, stop: unburned fuel can damage the catalytic converter.",
+   "causes": [
+    "Worn spark plug",
+    "Faulty ignition coil",
+    "Clogged or leaking injector"
+   ],
+   "action": "Book a garage visit soon."
+  },
+  "P0303": {
+   "title": "Engine misfire, cylinder 3",
+   "severity": "high",
+   "technicalTitle": "Cylinder 3 misfire detected",
+   "meaning": "Cylinder 3 isn't burning fuel properly, so the engine runs unevenly.",
+   "symptoms": [
+    "Shaking at idle",
+    "Less power when accelerating"
+   ],
+   "safeToDrive": "Short trips, gently. If the engine light flashes, stop: unburned fuel can damage the catalytic converter.",
+   "causes": [
+    "Worn spark plug",
+    "Faulty ignition coil",
+    "Clogged or leaking injector"
+   ],
+   "action": "Book a garage visit soon."
+  },
+  "P0304": {
+   "title": "Engine misfire, cylinder 4",
+   "severity": "high",
+   "technicalTitle": "Cylinder 4 misfire detected",
+   "meaning": "Cylinder 4 isn't burning fuel properly, so the engine runs unevenly.",
+   "symptoms": [
+    "Shaking at idle",
+    "Less power when accelerating"
+   ],
+   "safeToDrive": "Short trips, gently. If the engine light flashes, stop: unburned fuel can damage the catalytic converter.",
+   "causes": [
+    "Worn spark plug",
+    "Faulty ignition coil",
+    "Clogged or leaking injector"
+   ],
+   "action": "Book a garage visit soon."
+  },
+  "P0305": {
+   "title": "Engine misfire, cylinder 5",
+   "severity": "high",
+   "technicalTitle": "Cylinder 5 misfire detected",
+   "meaning": "Cylinder 5 isn't burning fuel properly, so the engine runs unevenly.",
+   "symptoms": [
+    "Shaking at idle",
+    "Less power when accelerating"
+   ],
+   "safeToDrive": "Short trips, gently. If the engine light flashes, stop: unburned fuel can damage the catalytic converter.",
+   "causes": [
+    "Worn spark plug",
+    "Faulty ignition coil",
+    "Clogged or leaking injector"
+   ],
+   "action": "Book a garage visit soon."
+  },
+  "P0306": {
+   "title": "Engine misfire, cylinder 6",
+   "severity": "high",
+   "technicalTitle": "Cylinder 6 misfire detected",
+   "meaning": "Cylinder 6 isn't burning fuel properly, so the engine runs unevenly.",
+   "symptoms": [
+    "Shaking at idle",
+    "Less power when accelerating"
+   ],
+   "safeToDrive": "Short trips, gently. If the engine light flashes, stop: unburned fuel can damage the catalytic converter.",
+   "causes": [
+    "Worn spark plug",
+    "Faulty ignition coil",
+    "Clogged or leaking injector"
+   ],
+   "action": "Book a garage visit soon."
+  },
+  "P0171": {
+   "title": "Engine running lean (bank 1)",
+   "severity": "medium",
+   "technicalTitle": "System too lean, bank 1",
+   "meaning": "The engine is getting too much air or too little fuel, so the computer is adding fuel to compensate.",
+   "symptoms": [
+    "Rough idle",
+    "Hesitation when accelerating"
+   ],
+   "safeToDrive": "Yes, for now. Get it checked within a few weeks.",
+   "causes": [
+    "Vacuum leak (cracked hose)",
+    "Dirty air flow sensor",
+    "Weak fuel pump or clogged filter"
+   ],
+   "action": "Ask a garage to check for air leaks and the air flow sensor."
+  },
+  "P0174": {
+   "title": "Engine running lean (bank 2)",
+   "severity": "medium",
+   "technicalTitle": "System too lean, bank 2",
+   "meaning": "The engine is getting too much air or too little fuel on its second cylinder bank.",
+   "symptoms": [
+    "Rough idle",
+    "Hesitation"
+   ],
+   "safeToDrive": "Yes, for now. Get it checked within a few weeks.",
+   "causes": [
+    "Vacuum leak",
+    "Dirty air flow sensor",
+    "Low fuel pressure"
+   ],
+   "action": "Ask a garage to check for air leaks."
+  },
+  "P0172": {
+   "title": "Engine running rich (bank 1)",
+   "severity": "medium",
+   "technicalTitle": "System too rich, bank 1",
+   "meaning": "The engine is getting too much fuel, which wastes fuel and can foul spark plugs.",
+   "symptoms": [
+    "Higher fuel use",
+    "Fuel smell",
+    "Black smoke"
+   ],
+   "safeToDrive": "Yes, for now. Get it checked soon.",
+   "causes": [
+    "Leaking injector",
+    "Faulty oxygen sensor",
+    "Dirty air filter",
+    "Fuel pressure too high"
+   ],
+   "action": "Ask a garage to check the injectors and sensors."
+  },
+  "P0175": {
+   "title": "Engine running rich (bank 2)",
+   "severity": "medium",
+   "technicalTitle": "System too rich, bank 2",
+   "meaning": "The engine is getting too much fuel on its second cylinder bank.",
+   "symptoms": [
+    "Higher fuel use",
+    "Fuel smell"
+   ],
+   "safeToDrive": "Yes, for now. Get it checked soon.",
+   "causes": [
+    "Leaking injector",
+    "Faulty oxygen sensor"
+   ],
+   "action": "Ask a garage to check the injectors and sensors."
+  },
+  "P0420": {
+   "title": "Catalytic converter less efficient (bank 1)",
+   "severity": "minor",
+   "technicalTitle": "Catalyst system efficiency below threshold, bank 1",
+   "meaning": "The part that cleans the exhaust isn't working as well as it should.",
+   "symptoms": [
+    "Usually nothing you can feel",
+    "May fail an emissions test"
+   ],
+   "safeToDrive": "Yes. It mostly affects emissions.",
+   "causes": [
+    "Aging catalytic converter",
+    "Faulty rear oxygen sensor",
+    "Exhaust leak"
+   ],
+   "action": "Have it checked before your next inspection."
+  },
+  "P0430": {
+   "title": "Catalytic converter less efficient (bank 2)",
+   "severity": "minor",
+   "technicalTitle": "Catalyst system efficiency below threshold, bank 2",
+   "meaning": "The exhaust cleaner on the second bank isn't working as well as it should.",
+   "symptoms": [
+    "Usually nothing you can feel"
+   ],
+   "safeToDrive": "Yes. It mostly affects emissions.",
+   "causes": [
+    "Aging catalytic converter",
+    "Faulty oxygen sensor"
+   ],
+   "action": "Have it checked before your next inspection."
+  },
+  "P0128": {
+   "title": "Engine warms up too slowly",
+   "severity": "minor",
+   "technicalTitle": "Coolant temperature below thermostat regulating temperature",
+   "meaning": "The engine takes too long to reach its normal temperature, usually because the thermostat stays open.",
+   "symptoms": [
+    "Heater blows lukewarm",
+    "Temperature gauge stays low",
+    "Slightly higher fuel use"
+   ],
+   "safeToDrive": "Yes. Fix it before winter.",
+   "causes": [
+    "Thermostat stuck open",
+    "Faulty coolant temperature sensor"
+   ],
+   "action": "Ask a garage to replace the thermostat."
+  },
+  "P0217": {
+   "title": "Engine overheating",
+   "severity": "high",
+   "technicalTitle": "Engine coolant over-temperature condition",
+   "meaning": "The engine got hotter than it should. Overheating can seriously damage the engine.",
+   "symptoms": [
+    "Temperature gauge high",
+    "Steam from the bonnet",
+    "Warning light"
+   ],
+   "safeToDrive": "No. Stop safely, turn the engine off and let it cool. Don't open the coolant cap while hot.",
+   "causes": [
+    "Low coolant (leak)",
+    "Broken fan",
+    "Stuck thermostat",
+    "Failing water pump"
+   ],
+   "action": "Check the coolant level once cold, then get it to a garage."
+  },
+  "P0117": {
+   "title": "Engine temperature sensor reads too low",
+   "severity": "medium",
+   "technicalTitle": "Engine coolant temperature sensor circuit low",
+   "meaning": "The engine temperature sensor is sending a signal that's too low to be real.",
+   "symptoms": [
+    "Wrong temperature reading",
+    "Hard starting",
+    "Fan may run all the time"
+   ],
+   "safeToDrive": "Yes, carefully: the car may not know its real temperature.",
+   "causes": [
+    "Faulty sensor",
+    "Damaged wiring"
+   ],
+   "action": "Have the sensor and its wiring checked."
+  },
+  "P0118": {
+   "title": "Engine temperature sensor reads too high",
+   "severity": "medium",
+   "technicalTitle": "Engine coolant temperature sensor circuit high",
+   "meaning": "The engine temperature sensor is sending a signal that's too high to be real.",
+   "symptoms": [
+    "Wrong temperature reading",
+    "Fan may run all the time"
+   ],
+   "safeToDrive": "Yes, carefully.",
+   "causes": [
+    "Faulty sensor",
+    "Broken wire or connector"
+   ],
+   "action": "Have the sensor and its wiring checked."
+  },
+  "P0101": {
+   "title": "Air flow sensor reading off",
+   "severity": "medium",
+   "technicalTitle": "Mass air flow sensor circuit range/performance",
+   "meaning": "The sensor that measures air going into the engine gives values that don't make sense.",
+   "symptoms": [
+    "Hesitation",
+    "Poor fuel economy",
+    "Rough idle"
+   ],
+   "safeToDrive": "Yes, for now.",
+   "causes": [
+    "Dirty air flow sensor",
+    "Air leak after the sensor",
+    "Clogged air filter"
+   ],
+   "action": "Ask a garage to clean or test the air flow sensor."
+  },
+  "P0102": {
+   "title": "Air flow sensor signal too low",
+   "severity": "medium",
+   "technicalTitle": "Mass air flow sensor circuit low",
+   "meaning": "The air flow sensor signal is too low.",
+   "symptoms": [
+    "Hesitation",
+    "Stalling"
+   ],
+   "safeToDrive": "Yes, carefully.",
+   "causes": [
+    "Unplugged or dirty sensor",
+    "Wiring problem"
+   ],
+   "action": "Have the sensor checked."
+  },
+  "P0113": {
+   "title": "Intake air temperature sensor reads too high",
+   "severity": "minor",
+   "technicalTitle": "Intake air temperature sensor circuit high",
+   "meaning": "The intake air temperature sensor signal is out of range.",
+   "symptoms": [
+    "Usually nothing noticeable"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Unplugged sensor",
+    "Wiring problem"
+   ],
+   "action": "Have the sensor connector checked."
+  },
+  "P0130": {
+   "title": "Oxygen sensor problem (front, bank 1)",
+   "severity": "minor",
+   "technicalTitle": "O2 sensor circuit, bank 1 sensor 1",
+   "meaning": "The front oxygen sensor, which helps the engine mix fuel and air, isn't working right.",
+   "symptoms": [
+    "Higher fuel use"
+   ],
+   "safeToDrive": "Yes, for now.",
+   "causes": [
+    "Worn sensor",
+    "Wiring problem",
+    "Exhaust leak"
+   ],
+   "action": "Have the sensor checked."
+  },
+  "P0133": {
+   "title": "Oxygen sensor slow to respond",
+   "severity": "medium",
+   "technicalTitle": "O2 sensor circuit slow response, bank 1 sensor 1",
+   "meaning": "The front oxygen sensor reacts too slowly, so the engine can't fine-tune its fuel mixture.",
+   "symptoms": [
+    "Slightly higher fuel use",
+    "May fail an emissions test"
+   ],
+   "safeToDrive": "Yes, for now. Get it checked within a few weeks.",
+   "causes": [
+    "Aging oxygen sensor",
+    "Exhaust leak near the sensor"
+   ],
+   "action": "Check soon: the sensor usually needs replacing."
+  },
+  "P0135": {
+   "title": "Oxygen sensor heater problem (front)",
+   "severity": "minor",
+   "technicalTitle": "O2 sensor heater circuit, bank 1 sensor 1",
+   "meaning": "The front oxygen sensor's heater doesn't work, so the sensor takes longer to start working after a cold start.",
+   "symptoms": [
+    "Higher fuel use just after starting"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Failed sensor heater",
+    "Blown fuse",
+    "Wiring problem"
+   ],
+   "action": "Replace the sensor when convenient."
+  },
+  "P0136": {
+   "title": "Oxygen sensor problem (rear, bank 1)",
+   "severity": "minor",
+   "technicalTitle": "O2 sensor circuit, bank 1 sensor 2",
+   "meaning": "The rear oxygen sensor, which checks the catalytic converter, isn't working right.",
+   "symptoms": [
+    "Usually nothing noticeable"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Worn sensor",
+    "Wiring problem"
+   ],
+   "action": "Have it checked before your next inspection."
+  },
+  "P0141": {
+   "title": "Oxygen sensor heater problem (rear)",
+   "severity": "minor",
+   "technicalTitle": "O2 sensor heater circuit, bank 1 sensor 2",
+   "meaning": "The rear oxygen sensor's heater doesn't work.",
+   "symptoms": [
+    "Usually nothing noticeable"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Failed sensor heater",
+    "Wiring problem"
+   ],
+   "action": "Replace the sensor when convenient."
+  },
+  "P0011": {
+   "title": "Camshaft timing off (bank 1)",
+   "severity": "medium",
+   "technicalTitle": "Intake camshaft position timing over-advanced or system performance, bank 1",
+   "meaning": "The variable valve timing isn't reaching the position the engine asks for.",
+   "symptoms": [
+    "Rough idle",
+    "Less power",
+    "Higher fuel use"
+   ],
+   "safeToDrive": "Yes, gently, for short trips.",
+   "causes": [
+    "Low or old engine oil",
+    "Faulty timing control valve",
+    "Stretched timing chain"
+   ],
+   "action": "Check the oil level first, then see a garage."
+  },
+  "P0016": {
+   "title": "Crankshaft and camshaft out of sync",
+   "severity": "high",
+   "technicalTitle": "Crankshaft/camshaft position correlation, bank 1 sensor A",
+   "meaning": "The engine's crankshaft and camshaft aren't lined up as expected. Often a stretched timing chain or a slipped belt.",
+   "symptoms": [
+    "Rattle on start",
+    "Rough running",
+    "Hard starting"
+   ],
+   "safeToDrive": "Drive as little as possible: a failing timing chain or belt can destroy the engine.",
+   "causes": [
+    "Stretched timing chain",
+    "Slipped timing belt",
+    "Faulty sensor"
+   ],
+   "action": "Get it checked today."
+  },
+  "P0087": {
+   "title": "Fuel pressure too low",
+   "severity": "high",
+   "technicalTitle": "Fuel rail/system pressure too low",
+   "meaning": "The fuel system can't keep enough pressure to feed the engine properly.",
+   "symptoms": [
+    "Loss of power",
+    "Stalling",
+    "Hard starting"
+   ],
+   "safeToDrive": "Carefully: the engine may lose power suddenly.",
+   "causes": [
+    "Clogged fuel filter",
+    "Weak fuel pump",
+    "Faulty pressure regulator"
+   ],
+   "action": "Get it checked today."
+  },
+  "P0093": {
+   "title": "Large fuel leak detected",
+   "severity": "high",
+   "technicalTitle": "Fuel system large leak detected",
+   "meaning": "The car detected a big drop in fuel pressure, which can mean fuel is leaking.",
+   "symptoms": [
+    "Fuel smell",
+    "Loss of power"
+   ],
+   "safeToDrive": "No if you smell fuel: fire risk. Stop and call for help.",
+   "causes": [
+    "Leaking fuel line or injector",
+    "Faulty pressure sensor"
+   ],
+   "action": "Stop if you smell fuel, and have the car towed."
+  },
+  "P0234": {
+   "title": "Turbo pressure too high",
+   "severity": "medium",
+   "technicalTitle": "Turbocharger/supercharger overboost condition",
+   "meaning": "The turbo is producing more boost than the engine allows.",
+   "symptoms": [
+    "Engine goes into limp mode",
+    "Jerky power"
+   ],
+   "safeToDrive": "Gently, until it's checked.",
+   "causes": [
+    "Stuck wastegate",
+    "Faulty boost control valve"
+   ],
+   "action": "Have the turbo controls checked soon."
+  },
+  "P0299": {
+   "title": "Turbo pressure too low",
+   "severity": "medium",
+   "technicalTitle": "Turbocharger/supercharger underboost condition",
+   "meaning": "The turbo isn't producing as much boost as expected.",
+   "symptoms": [
+    "Less power",
+    "Limp mode"
+   ],
+   "safeToDrive": "Yes, gently.",
+   "causes": [
+    "Leaking intercooler hose",
+    "Stuck wastegate",
+    "Worn turbo"
+   ],
+   "action": "Ask a garage to check the turbo hoses first."
+  },
+  "P0325": {
+   "title": "Knock sensor problem",
+   "severity": "medium",
+   "technicalTitle": "Knock sensor 1 circuit, bank 1",
+   "meaning": "The sensor that listens for engine knock isn't working, so the engine protects itself by reducing power.",
+   "symptoms": [
+    "Less power",
+    "Higher fuel use"
+   ],
+   "safeToDrive": "Yes, avoid hard acceleration.",
+   "causes": [
+    "Faulty knock sensor",
+    "Wiring problem"
+   ],
+   "action": "Have the sensor checked."
+  },
+  "P0335": {
+   "title": "Crankshaft sensor problem",
+   "severity": "high",
+   "technicalTitle": "Crankshaft position sensor A circuit",
+   "meaning": "The engine computer can't read the crankshaft position, which it needs to run the engine.",
+   "symptoms": [
+    "Stalling",
+    "No start",
+    "Rev counter drops"
+   ],
+   "safeToDrive": "Risky: the engine may stall without warning.",
+   "causes": [
+    "Faulty crankshaft sensor",
+    "Damaged wiring"
+   ],
+   "action": "Get it checked today."
+  },
+  "P0340": {
+   "title": "Camshaft sensor problem",
+   "severity": "medium",
+   "technicalTitle": "Camshaft position sensor A circuit, bank 1",
+   "meaning": "The engine computer can't read the camshaft position.",
+   "symptoms": [
+    "Hard starting",
+    "Rough running"
+   ],
+   "safeToDrive": "Yes, carefully.",
+   "causes": [
+    "Faulty camshaft sensor",
+    "Wiring problem"
+   ],
+   "action": "Have the sensor checked soon."
+  },
+  "P0380": {
+   "title": "Glow plug circuit problem",
+   "severity": "minor",
+   "technicalTitle": "Glow plug/heater circuit A",
+   "meaning": "A diesel glow plug circuit isn't working, which makes cold starts harder.",
+   "symptoms": [
+    "Hard starting in the cold",
+    "White smoke after starting"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Failed glow plug",
+    "Faulty glow plug relay"
+   ],
+   "action": "Fix it before winter."
+  },
+  "P0401": {
+   "title": "Exhaust recirculation flow too low",
+   "severity": "minor",
+   "technicalTitle": "Exhaust gas recirculation flow insufficient",
+   "meaning": "Not enough exhaust gas is being fed back into the engine to reduce emissions.",
+   "symptoms": [
+    "Possible knocking",
+    "May fail an emissions test"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Carbon-clogged EGR valve or passages"
+   ],
+   "action": "Have the EGR valve cleaned or replaced."
+  },
+  "P0402": {
+   "title": "Exhaust recirculation flow too high",
+   "severity": "minor",
+   "technicalTitle": "Exhaust gas recirculation flow excessive",
+   "meaning": "Too much exhaust gas is being fed back into the engine.",
+   "symptoms": [
+    "Rough idle",
+    "Stalling"
+   ],
+   "safeToDrive": "Yes, carefully.",
+   "causes": [
+    "EGR valve stuck open"
+   ],
+   "action": "Have the EGR valve checked."
+  },
+  "P0440": {
+   "title": "Fuel vapor system problem",
+   "severity": "minor",
+   "technicalTitle": "Evaporative emission system malfunction",
+   "meaning": "The system that traps fuel vapors from the tank has a problem.",
+   "symptoms": [
+    "Usually nothing noticeable",
+    "Possible fuel smell"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Loose or damaged fuel cap",
+    "Leaking vapor hose",
+    "Faulty purge valve"
+   ],
+   "action": "Check the fuel cap first."
+  },
+  "P0441": {
+   "title": "Fuel vapor purge flow incorrect",
+   "severity": "minor",
+   "technicalTitle": "Evaporative emission system incorrect purge flow",
+   "meaning": "The system that burns stored fuel vapors isn't flowing as expected.",
+   "symptoms": [
+    "Usually nothing noticeable"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Faulty purge valve",
+    "Cracked hose"
+   ],
+   "action": "Have it checked when convenient."
+  },
+  "P0442": {
+   "title": "Small fuel vapor leak",
+   "severity": "minor",
+   "technicalTitle": "Evaporative emission system leak detected (small leak)",
+   "meaning": "The system that traps fuel vapors from the tank has a small leak.",
+   "symptoms": [
+    "Usually nothing you can feel",
+    "Faint fuel smell, sometimes"
+   ],
+   "safeToDrive": "Yes, this isn't urgent.",
+   "causes": [
+    "Fuel cap not tight or worn seal",
+    "Cracked vapor hose"
+   ],
+   "action": "Tighten the fuel cap until it clicks. If it comes back, have the hoses checked."
+  },
+  "P0455": {
+   "title": "Large fuel vapor leak",
+   "severity": "minor",
+   "technicalTitle": "Evaporative emission system leak detected (large leak)",
+   "meaning": "The fuel vapor system has a large leak, often a missing or loose fuel cap.",
+   "symptoms": [
+    "Fuel smell"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Missing or loose fuel cap",
+    "Disconnected hose"
+   ],
+   "action": "Check the fuel cap first."
+  },
+  "P0456": {
+   "title": "Very small fuel vapor leak",
+   "severity": "minor",
+   "technicalTitle": "Evaporative emission system leak detected (very small leak)",
+   "meaning": "A tiny leak in the fuel vapor system.",
+   "symptoms": [
+    "Nothing noticeable"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Worn fuel cap seal",
+    "Tiny hose crack"
+   ],
+   "action": "Replace the fuel cap if it's old."
+  },
+  "P0500": {
+   "title": "Vehicle speed sensor problem",
+   "severity": "medium",
+   "technicalTitle": "Vehicle speed sensor A",
+   "meaning": "The car can't read its speed correctly.",
+   "symptoms": [
+    "Speedometer wrong or dead",
+    "Odd gear changes",
+    "ABS light"
+   ],
+   "safeToDrive": "Yes, carefully: some assist systems may not work.",
+   "causes": [
+    "Faulty speed sensor",
+    "Wiring problem"
+   ],
+   "action": "Have it checked soon."
+  },
+  "P0505": {
+   "title": "Idle control problem",
+   "severity": "medium",
+   "technicalTitle": "Idle air control system",
+   "meaning": "The engine can't hold a steady idle speed.",
+   "symptoms": [
+    "Idle too high or too low",
+    "Stalling at stops"
+   ],
+   "safeToDrive": "Yes, carefully.",
+   "causes": [
+    "Dirty throttle body",
+    "Faulty idle control valve",
+    "Vacuum leak"
+   ],
+   "action": "Ask a garage to clean the throttle body."
+  },
+  "P0506": {
+   "title": "Idle speed lower than expected",
+   "severity": "minor",
+   "technicalTitle": "Idle control system RPM lower than expected",
+   "meaning": "The engine idles slower than it should.",
+   "symptoms": [
+    "Rough idle",
+    "Vibration at stops"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Dirty throttle body",
+    "Vacuum leak"
+   ],
+   "action": "Have the throttle body cleaned."
+  },
+  "P0507": {
+   "title": "Idle speed higher than expected",
+   "severity": "minor",
+   "technicalTitle": "Idle control system RPM higher than expected",
+   "meaning": "The engine idles faster than it should.",
+   "symptoms": [
+    "High idle",
+    "Car creeps forward"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Vacuum leak",
+    "Dirty throttle body"
+   ],
+   "action": "Have it checked when convenient."
+  },
+  "P0520": {
+   "title": "Oil pressure sensor problem",
+   "severity": "medium",
+   "technicalTitle": "Engine oil pressure sensor/switch circuit",
+   "meaning": "The car can't read the engine oil pressure reliably.",
+   "symptoms": [
+    "Oil warning light flickers"
+   ],
+   "safeToDrive": "Check the oil level first. If the oil light stays on, stop.",
+   "causes": [
+    "Faulty oil pressure sensor",
+    "Wiring problem",
+    "Low oil"
+   ],
+   "action": "Check the oil level and get it checked soon."
+  },
+  "P0524": {
+   "title": "Oil pressure too low",
+   "severity": "high",
+   "technicalTitle": "Engine oil pressure too low",
+   "meaning": "The engine doesn't have enough oil pressure. Running like this can destroy the engine within minutes.",
+   "symptoms": [
+    "Oil warning light",
+    "Ticking or knocking noise"
+   ],
+   "safeToDrive": "No. Stop safely and turn the engine off.",
+   "causes": [
+    "Low oil level",
+    "Oil pump failure",
+    "Wrong oil grade"
+   ],
+   "action": "Stop, check the oil level and call for help."
+  },
+  "P0562": {
+   "title": "System voltage low",
+   "severity": "medium",
+   "technicalTitle": "System voltage low",
+   "meaning": "The car's electrical voltage is lower than it should be.",
+   "symptoms": [
+    "Dim lights",
+    "Hard starting",
+    "Battery light"
+   ],
+   "safeToDrive": "Yes, but the car may not restart.",
+   "causes": [
+    "Weak battery",
+    "Failing alternator",
+    "Loose battery terminal"
+   ],
+   "action": "Have the battery and alternator tested."
+  },
+  "P0563": {
+   "title": "System voltage high",
+   "severity": "medium",
+   "technicalTitle": "System voltage high",
+   "meaning": "The car's electrical voltage is too high, which can damage electronics.",
+   "symptoms": [
+    "Bulbs burning out",
+    "Battery smell"
+   ],
+   "safeToDrive": "Short trips only.",
+   "causes": [
+    "Faulty alternator regulator"
+   ],
+   "action": "Have the charging system checked soon."
+  },
+  "P0571": {
+   "title": "Brake switch problem",
+   "severity": "medium",
+   "technicalTitle": "Brake switch A circuit",
+   "meaning": "The car can't read the brake pedal switch correctly.",
+   "symptoms": [
+    "Cruise control doesn't work",
+    "Brake lights may not work"
+   ],
+   "safeToDrive": "Check your brake lights work. If not, don't drive until fixed.",
+   "causes": [
+    "Faulty brake light switch"
+   ],
+   "action": "Have the switch replaced."
+  },
+  "P0606": {
+   "title": "Engine computer problem",
+   "severity": "high",
+   "technicalTitle": "Control module processor fault",
+   "meaning": "The engine computer found a fault in itself.",
+   "symptoms": [
+    "Stalling",
+    "Limp mode",
+    "Various warning lights"
+   ],
+   "safeToDrive": "Carefully: the engine may behave unpredictably.",
+   "causes": [
+    "Internal computer fault",
+    "Power or ground problem"
+   ],
+   "action": "Get it checked today."
+  },
+  "P0700": {
+   "title": "Transmission problem reported",
+   "severity": "medium",
+   "technicalTitle": "Transmission control system malfunction",
+   "meaning": "The gearbox computer has stored its own fault code.",
+   "symptoms": [
+    "Harsh or odd gear changes",
+    "Limp mode"
+   ],
+   "safeToDrive": "Gently, until it's checked.",
+   "causes": [
+    "See the gearbox computer for details"
+   ],
+   "action": "A garage needs to read the gearbox computer."
+  },
+  "P0715": {
+   "title": "Gearbox speed sensor problem",
+   "severity": "medium",
+   "technicalTitle": "Input/turbine speed sensor A circuit",
+   "meaning": "The automatic gearbox can't read its input speed.",
+   "symptoms": [
+    "Harsh shifts",
+    "Stuck in one gear"
+   ],
+   "safeToDrive": "Gently, until it's checked.",
+   "causes": [
+    "Faulty speed sensor",
+    "Wiring problem"
+   ],
+   "action": "Have the gearbox checked soon."
+  },
+  "P0730": {
+   "title": "Wrong gear ratio",
+   "severity": "medium",
+   "technicalTitle": "Incorrect gear ratio",
+   "meaning": "The gearbox isn't in the gear it should be, or is slipping.",
+   "symptoms": [
+    "Slipping",
+    "Delayed engagement"
+   ],
+   "safeToDrive": "Gently, until it's checked.",
+   "causes": [
+    "Low or old gearbox fluid",
+    "Worn clutch packs",
+    "Faulty solenoid"
+   ],
+   "action": "Have the gearbox fluid and solenoids checked."
+  },
+  "P2002": {
+   "title": "Diesel particulate filter less efficient",
+   "severity": "medium",
+   "technicalTitle": "Diesel particulate filter efficiency below threshold, bank 1",
+   "meaning": "The filter that catches soot from diesel exhaust isn't working as well as it should.",
+   "symptoms": [
+    "Usually nothing noticeable",
+    "May fail an emissions test"
+   ],
+   "safeToDrive": "Yes.",
+   "causes": [
+    "Damaged filter",
+    "Faulty pressure sensor"
+   ],
+   "action": "Have the particulate filter checked."
+  },
+  "P2463": {
+   "title": "Diesel particulate filter clogged",
+   "severity": "medium",
+   "technicalTitle": "Diesel particulate filter soot accumulation",
+   "meaning": "The diesel particulate filter is too full of soot.",
+   "symptoms": [
+    "Less power",
+    "Limp mode",
+    "DPF warning light"
+   ],
+   "safeToDrive": "A long drive at steady motorway speed can help it clean itself. If it doesn't, see a garage.",
+   "causes": [
+    "Too many short trips",
+    "Failed regeneration"
+   ],
+   "action": "Try a 20-minute motorway drive, then re-check."
+  },
+  "P242F": {
+   "title": "Diesel particulate filter ash full",
+   "severity": "medium",
+   "technicalTitle": "Diesel particulate filter restriction, ash accumulation",
+   "meaning": "The particulate filter is filled with ash that can't be burned off.",
+   "symptoms": [
+    "Less power",
+    "DPF warning light"
+   ],
+   "safeToDrive": "Yes, gently.",
+   "causes": [
+    "High mileage filter",
+    "Engine burning oil"
+   ],
+   "action": "The filter needs cleaning or replacing."
+  },
+  "U0100": {
+   "title": "Lost communication with engine computer",
+   "severity": "high",
+   "technicalTitle": "Lost communication with ECM/PCM A",
+   "meaning": "Another computer in the car can't talk to the engine computer.",
+   "symptoms": [
+    "Stalling",
+    "No start",
+    "Many warning lights"
+   ],
+   "safeToDrive": "Carefully: the car may stall.",
+   "causes": [
+    "Weak battery",
+    "Loose connector",
+    "Wiring damage"
+   ],
+   "action": "Check the battery, then get it checked today."
+  },
+  "U0121": {
+   "title": "Lost communication with ABS",
+   "severity": "high",
+   "technicalTitle": "Lost communication with anti-lock brake system module",
+   "meaning": "The car can't talk to the anti-lock brake computer, so ABS may not work.",
+   "symptoms": [
+    "ABS and traction lights on"
+   ],
+   "safeToDrive": "Normal brakes work, but without ABS. Drive carefully.",
+   "causes": [
+    "Wiring or connector problem",
+    "Faulty ABS module"
+   ],
+   "action": "Get it checked soon."
+  },
+  "U0073": {
+   "title": "Car network problem",
+   "severity": "medium",
+   "technicalTitle": "Control module communication bus A off",
+   "meaning": "The network that connects the car's computers has a problem.",
+   "symptoms": [
+    "Several warning lights",
+    "Odd behavior"
+   ],
+   "safeToDrive": "Carefully.",
+   "causes": [
+    "Wiring damage",
+    "Faulty module on the network"
+   ],
+   "action": "Have the car's network checked."
+  },
+  "C0035": {
+   "title": "Front-left wheel speed sensor",
+   "severity": "high",
+   "technicalTitle": "Left front wheel speed sensor circuit",
+   "meaning": "The ABS can't read the front-left wheel's speed.",
+   "symptoms": [
+    "ABS and traction lights on"
+   ],
+   "safeToDrive": "Normal brakes work, but without ABS. Drive carefully.",
+   "causes": [
+    "Dirty or damaged sensor",
+    "Wiring problem"
+   ],
+   "action": "Get it checked soon."
+  }
+ }
+}

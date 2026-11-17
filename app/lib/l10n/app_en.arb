@@ -1,0 +1,559 @@
+{
+  "@@locale": "en",
+  "tabHome": "Home",
+  "tabHistory": "History",
+  "tabCodes": "Codes",
+  "tabCar": "Car",
+  "settings": "Settings",
+  "connect": "Connect",
+  "connectAdapter": "Connect adapter",
+  "tryDemo": "Try demo",
+  "tryAgain": "Try again",
+  "chooseAnother": "Choose another adapter",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "save": "Save",
+  "share": "Share",
+  "copy": "Copy",
+  "copied": "Copied",
+  "next": "Next",
+  "back": "Back",
+  "getStarted": "Get started",
+  "stop": "Stop",
+  "none": "None",
+  "live": "Live",
+  "now": "Now",
+  "stateOn": "On",
+  "stateOff": "Off",
+  "allow": "Allow",
+  "openSettings": "Open Settings",
+  "turnOn": "Turn on",
+  "disconnect": "Disconnect",
+  "notConnected": "Not connected",
+  "minutes": "{n} min",
+  "@minutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "pillConnected": "Connected",
+  "pillConnecting": "Connecting…",
+  "pillReconnecting": "Reconnecting…",
+  "pillNotConnected": "Not connected",
+  "pillDemo": "DEMO",
+  "bannerReconnecting": "Connection lost: reconnecting…",
+  "bannerReconnected": "Reconnected",
+  "passengerStrip": "Passenger view: don't use while driving",
+  "homeNotConnectedTitle": "Not connected",
+  "homeNotConnectedBody": "Plug in your adapter, turn the ignition on and tap Connect.",
+  "homeNoAdapterTitle": "Connect your adapter to see live data",
+  "homeNoAdapterBody": "Every value your car shares appears here in real time, and is saved on this phone so you can look back at it later.",
+  "healthChecking": "Not checked yet",
+  "healthCheckingBody": "Checking your car…",
+  "healthGood": "All good",
+  "healthNoProblems": "No problems",
+  "healthBattery": "Battery {value}",
+  "@healthBattery": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "healthCheckSoon": "Check soon",
+  "healthNeedsAttention": "Needs attention",
+  "healthProblems": "{count, plural, =1{1 problem to check} other{{count} problems to check}}",
+  "@healthProblems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "healthEngineHot": "Engine is hot",
+  "healthEngineTooHot": "Engine is too hot",
+  "healthBatteryLow": "Battery charging low",
+  "healthBatteryVeryLow": "Battery very low",
+  "healthMilOn": "Engine light is on",
+  "tripRecording": "Recording trip",
+  "liveFooter": "{rate} updates/s · {count} readings this session",
+  "@liveFooter": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      },
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "unsupportedFootnote": "{count, plural, =1{1 value not supported by your car} other{{count} values not supported by your car}}",
+  "@unsupportedFootnote": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unsupportedTitle": "Not supported by your car",
+  "unsupportedBody": "Your car said it has these values, but never answered when asked. That's normal, especially on older cars. They're hidden for this session.",
+  "statusWarmingUp": "Warming up",
+  "statusNormal": "Normal",
+  "statusHot": "Hot",
+  "statusTooHot": "Too hot",
+  "statusCharging": "Charging",
+  "statusLowCharging": "Low charging",
+  "statusTooHigh": "Too high",
+  "statusGood": "Good",
+  "statusLow": "Low",
+  "statusVeryLow": "Very low",
+  "lastUpdated": "Last updated {age} ago",
+  "@lastUpdated": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "statMin": "Min",
+  "statAvg": "Avg",
+  "statMax": "Max",
+  "whatItMeans": "What it means",
+  "openHistory": "Open full history",
+  "coolantGuidance": "General guidance: 70–109 °C is normal once warm. 110–115 °C is hot. Above 115 °C, stop safely and let the engine cool.",
+  "batteryGuidance": "General guidance: 13.2–14.8 V while the engine runs means it's charging. With the engine off, 12.4 V or more is a healthy battery.",
+  "rangeLive": "Live",
+  "range1h": "1H",
+  "range24h": "24H",
+  "range7d": "7D",
+  "range30d": "30D",
+  "rangeAll": "All",
+  "allValues": "All values",
+  "noDataInRange": "No data in this time range",
+  "readingsCount": "{count} readings",
+  "@readingsCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "liveEmptyTitle": "Nothing live right now",
+  "liveEmptyBody": "Connect to your car to watch every value move in real time.",
+  "historyEmptyTitle": "No history yet",
+  "historyEmptyBody": "Connect to start recording. Every value is saved on this phone, so you can look back at any drive.",
+  "recentTrips": "Recent trips",
+  "avgSpeed": "avg {speed}",
+  "@avgSpeed": {
+    "placeholders": {
+      "speed": {
+        "type": "String"
+      }
+    }
+  },
+  "storageFooter": "{count} readings · {size} · stored only on this phone",
+  "@storageFooter": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "demoCar": "Demo car",
+  "yourCar": "Your car",
+  "likelyYear": "{year} (likely)",
+  "@likelyYear": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "tripDuration": "Duration",
+  "tripDistance": "Distance",
+  "tripAvgSpeed": "Avg speed",
+  "tripMaxSpeed": "Max speed",
+  "tripMaxTemp": "Max engine temp",
+  "tripIdle": "Idle time",
+  "tripFuel": "Fuel used",
+  "tripConsumption": "Consumption",
+  "tripDistanceNote": "Distance is calculated from your car's speed and may differ slightly from your odometer.",
+  "tripGapNote": "Part of this trip had no data and isn't counted.",
+  "deleteTrip": "Delete trip",
+  "deleteTripConfirm": "Delete this trip? Its readings stay in your history.",
+  "askingYourCar": "Asking your car…",
+  "codesNeverTitle": "Connect to check your car for problems",
+  "codesNeverBody": "Drivly reads fault codes automatically every time you connect, and keeps every scan.",
+  "scanNow": "Check now",
+  "scanAgain": "Scan again",
+  "noProblemsTitle": "No problems found",
+  "noProblemsBody": "Your car didn't report any fault codes. Checked {time}.",
+  "@noProblemsBody": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "milNoCodes": "Your engine light is on, but your car didn't share a code. Some problems are only visible with a manufacturer tool.",
+  "confirmedProblems": "Confirmed problems ({count})",
+  "@confirmedProblems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "developingProblems": "Developing problems ({count})",
+  "@developingProblems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pendingExplainTitle": "What's a developing problem?",
+  "pendingExplainBody": "Your car noticed something once but hasn't confirmed it yet. If it happens again on the next drives, it becomes a confirmed problem and may turn the engine light on.",
+  "scanHistory": "Scan history",
+  "scanHistoryEmpty": "No scans yet",
+  "milOn": "Engine light is ON",
+  "problemsFound": "{count, plural, =1{1 problem found} other{{count} problems found}}",
+  "@problemsFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "problemsCount": "{count, plural, =0{No codes} =1{1 problem} other{{count} problems}}",
+  "@problemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "checkedAt": "Checked {time}",
+  "@checkedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "readFailedNotConnected": "Couldn't read codes: not connected.",
+  "readFailedCar": "Couldn't read codes: your car isn't answering.",
+  "readFailedBusy": "Couldn't read codes: the adapter is busy. Try again.",
+  "readFailed": "Couldn't read codes. Try again.",
+  "severityHigh": "High",
+  "severityMedium": "Medium",
+  "severityMinor": "Minor",
+  "actionHigh": "Get it checked today",
+  "actionMedium": "Check soon",
+  "actionMinor": "Not urgent",
+  "clearCodes": "Clear codes",
+  "stopCarFirst": "Stop the car first",
+  "clearTitle": "{count, plural, =1{Clear 1 fault code?} other{Clear {count} fault codes?}}",
+  "@clearTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clearWarn1": "This turns the engine light off but doesn't fix anything. If the problem is still there, the codes will come back.",
+  "clearWarn2": "Your car's inspection checks reset. It may fail an emissions test (TÜV/AU, MOT, contrôle technique) until you've driven for a few days.",
+  "clearWarn3": "Engine off, ignition on.",
+  "clearSnapshotNote": "A copy of these codes is saved to your scan history.",
+  "clearDone": "Codes cleared. No problems right now.",
+  "clearCameBack": "{count, plural, =1{1 code came back straight away: the problem is still there.} other{{count} codes came back straight away: the problem is still there.}}",
+  "@clearCameBack": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clearFailed": "Couldn't clear the codes. Try again with the engine off and ignition on.",
+  "whatYouMightNotice": "What you might notice",
+  "safeToDrive": "Is it safe to drive?",
+  "commonCauses": "Common causes",
+  "whatToDo": "What to do",
+  "forYourMechanic": "For your mechanic",
+  "kindStored": "Confirmed (mode 03)",
+  "kindPending": "Pending (mode 07)",
+  "manufacturerSpecific": "Manufacturer-specific",
+  "searchOnline": "Search online",
+  "pendingBadge": "Developing problem: not confirmed yet",
+  "noCodes": "No codes",
+  "reasonAuto": "Automatic check",
+  "reasonManual": "Manual scan",
+  "reasonBeforeClear": "Before clearing",
+  "reasonAfterClear": "After clearing",
+  "carEmptyTitle": "No car yet",
+  "carEmptyBody": "Connect once and Drivly reads your car's VIN, make and likely year, all offline.",
+  "adapterSection": "Adapter",
+  "carSupports": "Data your car shares ({count})",
+  "@carSupports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "editCar": "Edit",
+  "nickname": "Nickname",
+  "model": "Model",
+  "modelYear": "Model year",
+  "vinNotShared": "Your car doesn't share its VIN over OBD. You'll find it on your registration document or at the bottom of the windshield.",
+  "enterVin": "Enter VIN",
+  "enterVinHint": "17 characters, no I, O or Q.",
+  "vinInvalid": "That doesn't look like a VIN.",
+  "madeIn": "Made in",
+  "connectionType": "Connection",
+  "protocolCan": "CAN (modern)",
+  "protocolLegacy": "K-Line (older)",
+  "valuesAvailable": "Values available",
+  "lastSeen": "Last connected",
+  "batteryAtPort": "Battery at port",
+  "protocol": "Protocol",
+  "fastMode": "Fast mode (multi-value requests)",
+  "updatesPerSecond": "Requests per second",
+  "changeAdapter": "Change adapter",
+  "groupMotion": "Motion",
+  "groupEngine": "Engine",
+  "groupTemperature": "Temperatures",
+  "groupFuel": "Fuel",
+  "groupAir": "Air intake",
+  "groupElectrical": "Electrical",
+  "groupEmissions": "Emissions",
+  "groupDistance": "Distance & time",
+  "general": "General",
+  "unitsSpeed": "Speed",
+  "unitsTemp": "Temperature",
+  "theme": "Theme",
+  "themeDark": "Dark",
+  "themeLight": "Light",
+  "themeSystem": "System",
+  "keepScreenOn": "Keep screen on",
+  "keepScreenOnHint": "While connected",
+  "savedAdapter": "Saved adapter",
+  "forget": "Forget",
+  "connectAutomatically": "Connect automatically",
+  "adapterLog": "Adapter log",
+  "adapterLogHint": "Raw adapter messages, for bug reports",
+  "logEmpty": "Nothing logged yet.",
+  "historyAndTrips": "History & trips",
+  "recordTrips": "Record trips automatically",
+  "storedHistory": "Stored history",
+  "storageDetail": "{readings} readings · {trips} trips · {size} · since {since}",
+  "@storageDetail": {
+    "placeholders": {
+      "readings": {
+        "type": "String"
+      },
+      "trips": {
+        "type": "String"
+      },
+      "size": {
+        "type": "String"
+      },
+      "since": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteOlder": "Delete history older than 90 days",
+  "deleteOlderConfirm": "Delete all readings older than 90 days? This can't be undone.",
+  "deleteAllHistory": "Delete all history",
+  "deleteAllConfirm": "Delete every reading, trip and scan? This can't be undone.",
+  "demo": "Demo",
+  "startDemo": "Start demo mode",
+  "demoRunning": "Demo mode is running",
+  "demoHint": "Simulated data, no car needed",
+  "simulateDrop": "Simulate connection loss",
+  "simulateIgnitionOff": "Simulate ignition off (6 s)",
+  "safetyPrivacy": "Safety & privacy",
+  "safetyNotice": "Safety notice",
+  "privacy": "Privacy",
+  "privacyBody": "Everything stays on this phone. No account, no tracking.",
+  "about": "About",
+  "version": "Version",
+  "sourceCode": "Source code",
+  "licenses": "Open-source licenses",
+  "showOnboarding": "Show onboarding again",
+  "safetyTitle": "Eyes on the road",
+  "safetyBody": "Drivly is for passengers and parked use. Don't look at your phone while driving.",
+  "iUnderstand": "I understand",
+  "likelyAdapters": "Likely OBD adapters",
+  "otherDevices": "Other Bluetooth devices ({count})",
+  "@otherDevices": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "lastUsed": "Last used",
+  "lookingForAdapters": "Looking for adapters…",
+  "scanFinished": "Scan finished",
+  "noAdapterFound": "No adapter found",
+  "troubleshootShort": "Check the adapter's light is on, the ignition is on, and that it's a Bluetooth LE adapter.",
+  "cantFindAdapter": "Can't find your adapter?",
+  "trouble1": "Is the adapter's light on? If not, it isn't getting power. Check that it's pushed in fully.",
+  "trouble2": "Is the ignition on?",
+  "trouble3": "Is it a Bluetooth LE adapter? Classic-Bluetooth adapters don't work with iPhone, or with Drivly yet.",
+  "trouble4": "Is it connected to another phone or app? Close the other app or turn off Bluetooth on that phone.",
+  "trouble5": "Unplug the adapter for 10 seconds and plug it back in.",
+  "btOffTitle": "Bluetooth is off",
+  "btOffBody": "Turn on Bluetooth to connect to your adapter.",
+  "permTitle": "Drivly needs Bluetooth access",
+  "permBody": "It's only used to talk to your adapter. Nothing leaves your phone.",
+  "connectingTo": "Connecting to {name}",
+  "@connectingTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stageAdapter": "Connecting to adapter",
+  "stageTalkAdapter": "Talking to adapter",
+  "stageTalkCar": "Talking to your car",
+  "mayTake15s": "This can take up to 15 s",
+  "errTransportTitle": "Couldn't connect to {name}",
+  "@errTransportTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "errTransportBody": "It may be connected to another phone or app.",
+  "errAdapterTitle": "The adapter isn't answering",
+  "errAdapterBody": "Unplug it, wait 10 seconds, plug it back in.",
+  "errCarTitle": "Your car isn't answering",
+  "errCarBody": "Turn the ignition on, or start the engine, and try again.",
+  "errGenericTitle": "Something went wrong",
+  "errGenericBody": "Try again. If it keeps happening, share the adapter log with us.",
+  "onbWelcomeTitle": "Welcome to Drivly",
+  "onbWelcomeBody": "Understand your car in plain words. Live data, fault codes and full history. Everything stays on your phone.",
+  "onbPlugTitle": "Plug in your adapter",
+  "onbPlugBody": "The port is usually under the dashboard, near your knees.",
+  "onbIgnitionTitle": "Turn on the ignition",
+  "onbIgnitionBody": "Turn the key or press Start without your foot on the brake. Some cars need the engine running.",
+  "onbConnectTitle": "Connect",
+  "onbConnectBody": "We'll look for your adapter. Your phone will ask for Bluetooth access: it's only used to talk to the adapter.",
+  "whereIsPort": "Where is my port?",
+  "whereIsPortBody": "Most cars: under the dashboard on the driver's side, near the steering column. Sometimes behind a small cover, near the fuse box, or under the center console.",
+  "whichAdapter": "Which adapter do I need?",
+  "whichAdapterBody": "An ELM327-compatible adapter with Bluetooth LE (often labeled \"Bluetooth 4.0\" or \"for iOS\"). Classic Bluetooth adapters don't work with iPhone, or with Drivly yet.",
+  "sensorSpeed": "Speed",
+  "sensorSpeedInfo": "How fast the car is going, as measured by the car itself.",
+  "sensorRpm": "Engine speed",
+  "sensorRpmInfo": "How many times per minute the engine turns. Around 800 at idle, higher when you accelerate.",
+  "sensorCoolant": "Engine temperature",
+  "sensorCoolantInfo": "The temperature of the engine's coolant. It rises to about 90 °C once the engine is warm.",
+  "sensorBattery": "Battery",
+  "sensorBatteryInfo": "Voltage at the OBD port. With the engine running, it shows whether the battery is being charged.",
+  "sensorLoad": "Engine load",
+  "sensorLoadInfo": "How hard the engine is working right now. High when accelerating or climbing, low when cruising.",
+  "sensorThrottle": "Throttle",
+  "sensorThrottleInfo": "How far the throttle is open, which controls how much air the engine gets.",
+  "sensorIntakeTemp": "Intake air",
+  "sensorIntakeTempInfo": "Temperature of the air going into the engine. Cooler air gives a little more power.",
+  "sensorFuelLevel": "Fuel",
+  "sensorFuelLevelInfo": "How full the tank is, as a percentage.",
+  "sensorFuelRate": "Fuel use",
+  "sensorFuelRateInfo": "How much fuel the engine is burning right now, in liters per hour.",
+  "sensorMaf": "Air flow",
+  "sensorMafInfo": "How much air flows into the engine each second. It goes up with engine speed and load.",
+  "sensorMap": "Intake pressure",
+  "sensorMapInfo": "Air pressure in the intake. Low at idle, close to outside pressure at full throttle (higher with a turbo).",
+  "sensorTiming": "Ignition timing",
+  "sensorTimingInfo": "How early the spark fires before the piston reaches the top. The engine adjusts it constantly.",
+  "sensorOilTemp": "Oil temperature",
+  "sensorOilTempInfo": "Temperature of the engine oil. It warms up more slowly than the coolant.",
+  "sensorAmbientTemp": "Outside air",
+  "sensorAmbientTempInfo": "Temperature outside the car, as measured by the car.",
+  "sensorModuleVoltage": "Computer voltage",
+  "sensorModuleVoltageInfo": "Voltage reaching the engine computer. Usually close to the battery voltage.",
+  "sensorAbsoluteLoad": "Absolute load",
+  "sensorAbsoluteLoadInfo": "Engine load relative to its best breathing. Can exceed 100% on turbo engines.",
+  "sensorRelativeThrottle": "Relative throttle",
+  "sensorRelativeThrottleInfo": "Throttle opening measured from its learned closed position.",
+  "sensorPedal": "Accelerator pedal",
+  "sensorPedalInfo": "How far the accelerator pedal is pressed.",
+  "sensorRelativePedal": "Relative pedal",
+  "sensorCommandedThrottle": "Throttle command",
+  "sensorCommandedThrottleInfo": "How far the engine computer is asking the throttle to open.",
+  "sensorDemandTorque": "Requested torque",
+  "sensorDemandTorqueInfo": "The torque you're asking for with the pedal, as a percentage of the engine's maximum.",
+  "sensorActualTorque": "Actual torque",
+  "sensorActualTorqueInfo": "The torque the engine is delivering, as a percentage of its maximum.",
+  "sensorReferenceTorque": "Reference torque",
+  "sensorReferenceTorqueInfo": "The engine's reference (maximum) torque, used to scale the torque percentages.",
+  "sensorFuelPressure": "Fuel pressure",
+  "sensorFuelPressureInfo": "Pressure in the fuel system.",
+  "sensorRailPressure": "Fuel rail pressure",
+  "sensorRailPressureInfo": "Pressure in the fuel rail that feeds the injectors. Very high on direct-injection and diesel engines.",
+  "sensorInjectionTiming": "Injection timing",
+  "sensorInjectionTimingInfo": "When fuel is injected relative to the piston position.",
+  "sensorEthanol": "Ethanol content",
+  "sensorEthanolInfo": "How much ethanol is in the fuel (flex-fuel cars).",
+  "sensorLambda": "Air-fuel target",
+  "sensorLambdaInfo": "The air-fuel mixture the engine is aiming for. 1.00 is the ideal (stoichiometric) mix.",
+  "sensorBaro": "Air pressure",
+  "sensorBaroInfo": "Outside air pressure. Lower at altitude.",
+  "sensorO2Front": "Oxygen sensor (front)",
+  "sensorO2FrontInfo": "Measures oxygen in the exhaust before the catalytic converter. It swings quickly when the engine is warm, which is normal.",
+  "sensorO2Rear": "Oxygen sensor (rear)",
+  "sensorO2RearInfo": "Measures oxygen after the catalytic converter. A steady value means the converter is working.",
+  "sensorCatTemp": "Catalyst temperature",
+  "sensorCatTempInfo": "Temperature of the catalytic converter, which cleans the exhaust.",
+  "sensorEgr": "Exhaust recirculation",
+  "sensorEgrInfo": "How much exhaust gas is fed back into the engine to reduce emissions.",
+  "sensorEvapPurge": "Fuel vapor purge",
+  "sensorEvapPurgeInfo": "How much fuel vapor from the tank is being burned by the engine.",
+  "sensorHybridBattery": "Hybrid battery",
+  "sensorHybridBatteryInfo": "Remaining charge of the hybrid battery pack.",
+  "sensorRunTime": "Engine run time",
+  "sensorRunTimeInfo": "How long the engine has been running since it was started.",
+  "sensorDistanceWithMil": "Distance with engine light",
+  "sensorDistanceWithMilInfo": "How far the car has driven with the engine light on.",
+  "sensorDistanceSinceClear": "Distance since codes cleared",
+  "sensorDistanceSinceClearInfo": "How far the car has driven since fault codes were last cleared.",
+  "sensorWarmups": "Warm-ups since codes cleared",
+  "sensorWarmupsInfo": "How many times the engine has warmed up since codes were last cleared.",
+  "sensorTimeWithMil": "Time with engine light",
+  "sensorTimeSinceClear": "Time since codes cleared",
+  "sensorOdometer": "Odometer",
+  "sensorOdometerInfo": "Total distance the car has driven, reported by the car.",
+  "sensorMil": "Engine light",
+  "sensorMilInfo": "Whether the engine (check engine) light is on.",
+  "sensorDtcCount": "Stored codes",
+  "sensorDtcCountInfo": "How many confirmed fault codes the car has stored.",
+  "sensorStft": "Short-term fuel trim (bank {bank})",
+  "@sensorStft": {
+    "placeholders": {
+      "bank": {
+        "type": "int"
+      }
+    }
+  },
+  "sensorLtft": "Long-term fuel trim (bank {bank})",
+  "@sensorLtft": {
+    "placeholders": {
+      "bank": {
+        "type": "int"
+      }
+    }
+  },
+  "sensorStftInfo": "Quick fuel corrections the engine makes right now. Values near 0% are ideal; large swings are normal.",
+  "sensorLtftInfo": "Fuel corrections the engine has learned over time. Beyond about ±10% can point to a leak or a sensor problem."
+}

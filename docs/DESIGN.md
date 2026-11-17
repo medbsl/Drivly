@@ -61,7 +61,8 @@ People who drive but aren't mechanics. They have three common moments:
 ### Non-goals (v1.0)
 
 - Classic Bluetooth (SPP) and Wi-Fi adapters. The architecture is ready for them but they aren't built.
-- Charts, CSV export, health score, fuel tracking, multiple cars, cloud sync. These are premium ideas: the design leaves room for them, but they aren't built.
+- CSV export, health score, multiple-car management UI, cloud sync. These are premium ideas: the design leaves room for them, but they aren't built.
+- ~~Charts~~: **now in v1** (2026-11-16 decision). Every reading is saved and charted over time (see §11).
 - Manufacturer-specific diagnostics (ABS/airbag modules, service resets, comfort functions).
 - Accounts, backend, analytics.
 
@@ -1145,4 +1146,11 @@ These are **calls I made in this draft**, not things you've agreed to. Change an
 | Demo mode | Simulated ELM327 at transport level (whole stack runs). Permanent DEMO badge |
 | Premium | No locked teasers in v1. `Entitlements` seam only |
 | State/DB | Riverpod, go_router, drift |
-| Repo | Dart pub workspace: `app/` + `packages/obd_core` (pure Dart) + transport + DTC DB |
+| Repo | Dart pub workspace: `app/` + `packages/obd_core` (pure Dart). BLE transport and DTC DB live in `app/` for now |
+| **History (2026-11-16)** | **Every reading is saved** (not just 1 Hz trip samples) to a `readings` table (session, sensor id, t, value). Charts aggregate in SQL: avg line + min–max band, ranges Live (in-memory, 15 min) · 1H · 24H · 7D · 30D · All |
+| **All data (2026-11-16)** | On connect, Drivly polls **every supported PID it knows** (~45), plus battery (ATRV) and engine light (PID 01). It no longer polls only what's visible. A weighted fair scheduler keeps RPM and speed at ~4×/s while slow values refresh every few seconds |
+| Multi-PID | On CAN, up to 6 PIDs per request (probed at init, with a single-PID fallback). Replaces the `…1` response-count probe, which isn't implemented yet |
+| BLE library | `universal_ble` (BSD-3). See ADR-0001 |
+| Database | `sqflite` (raw SQL, no codegen) instead of drift. Same tables plus `sessions` and `readings` |
+| Demo history | The first demo connection seeds a week of simulated drives for the demo car only, so charts aren't empty |
+| Tabs | Home · **History** · Codes · Car. Trips live inside History |
