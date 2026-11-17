@@ -288,9 +288,6 @@ class Elm327Simulator implements ObdTransport {
         return [0x47, car.pending.length, ...car.pending.expand(_encodeDtc)];
       case 0x0A:
         return [0x4A, 0x00];
-      case 0x04:
-        car.clearCodes();
-        return [0x44];
       case 0x09:
         if (req.length < 2) return null;
         if (req[1] == 0x00) return [0x49, 0x00, 0x55, 0x40, 0x00, 0x00];

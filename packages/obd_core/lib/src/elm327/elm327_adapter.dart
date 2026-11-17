@@ -262,14 +262,6 @@ class Elm327Adapter implements DiagnosticAdapter {
   }
 
   @override
-  Future<ObdResult<void>> clearDtcs() async {
-    final r = await _send('04', _t(5 * 1000));
-    if (!r.ok) return _failure(r);
-    final acked = parseReply(r.lines, protocol: _protocol).any((m) => m.payload.isNotEmpty && m.payload[0] == 0x44);
-    return acked ? const Ok(null) : Malformed(r.lines.join(' '));
-  }
-
-  @override
   Future<ObdResult<String>> readVin() async {
     final r = await _send('0902', _t(5 * 1000));
     if (r.error == ElmError.noData || r.error == ElmError.unknownCommand) return const NotSupported();

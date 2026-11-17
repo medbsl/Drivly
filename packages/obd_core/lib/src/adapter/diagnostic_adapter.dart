@@ -30,6 +30,9 @@ class AdapterInfo {
 
 /// Semantic adapter API. ELM327 implements it; a custom adapter speaking its
 /// own protocol (ESP32 with JSON, say) can implement it directly.
+///
+/// Read-only by design: there is no method that changes the car, and there
+/// must never be one (docs/adr/0002-read-only.md).
 abstract interface class DiagnosticAdapter {
   AdapterLog get log;
   AdapterInfo? get info;
@@ -44,7 +47,6 @@ abstract interface class DiagnosticAdapter {
 
   Future<ObdResult<MonitorStatus>> readMonitorStatus();
   Future<ObdResult<List<Dtc>>> readDtcs(DtcKind kind);
-  Future<ObdResult<void>> clearDtcs();
   Future<ObdResult<String>> readVin();
   Future<ObdResult<double>> readBatteryVoltage();
 

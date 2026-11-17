@@ -151,6 +151,8 @@ class Trip {
       );
 }
 
+/// [beforeClear] and [afterClear] only appear in scans saved before clearing
+/// codes was removed (Drivly is read-only). Kept so that history still loads.
 enum ScanReason { auto, manual, beforeClear, afterClear }
 
 @immutable

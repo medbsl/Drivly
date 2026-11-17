@@ -256,30 +256,6 @@
   "actionHigh": "Get it checked today",
   "actionMedium": "Check soon",
   "actionMinor": "Not urgent",
-  "clearCodes": "Clear codes",
-  "stopCarFirst": "Stop the car first",
-  "clearTitle": "{count, plural, =1{Clear 1 fault code?} other{Clear {count} fault codes?}}",
-  "@clearTitle": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "clearWarn1": "This turns the engine light off but doesn't fix anything. If the problem is still there, the codes will come back.",
-  "clearWarn2": "Your car's inspection checks reset. It may fail an emissions test (TÜV/AU, MOT, contrôle technique) until you've driven for a few days.",
-  "clearWarn3": "Engine off, ignition on.",
-  "clearSnapshotNote": "A copy of these codes is saved to your scan history.",
-  "clearDone": "Codes cleared. No problems right now.",
-  "clearCameBack": "{count, plural, =1{1 code came back straight away: the problem is still there.} other{{count} codes came back straight away: the problem is still there.}}",
-  "@clearCameBack": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "clearFailed": "Couldn't clear the codes. Try again with the engine off and ignition on.",
   "whatYouMightNotice": "What you might notice",
   "safeToDrive": "Is it safe to drive?",
   "commonCauses": "Common causes",

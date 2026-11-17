@@ -4,6 +4,7 @@ import 'dart:convert';
 import '../adapter/adapter_log.dart';
 import '../transport/obd_transport.dart';
 import 'elm_error.dart';
+import 'read_only_guard.dart';
 import 'response_framer.dart';
 import 'sanitizer.dart';
 
@@ -75,7 +76,14 @@ class ElmSession {
 
   /// Queues [command] and resolves with its reply. Never throws for protocol
   /// problems: a hung adapter yields [ElmResponse.timeout].
+  ///
+  /// Read-only: a command that isn't a read is logged, never sent, and throws
+  /// [ReadOnlyViolation].
   Future<ElmResponse> send(String command, {Duration timeout = const Duration(milliseconds: 1500)}) {
+    if (!isReadOnlyCommand(command)) {
+      log.add(LogDirection.info, 'blocked (read-only): $command');
+      throw ReadOnlyViolation(command);
+    }
     final result = Completer<ElmResponse>();
     _tail = _tail.then((_) async {
       result.complete(await _execute(command, timeout));
@@ -130,6 +138,8 @@ class ElmSession {
       await drain.future.timeout(wait);
     } on TimeoutException {
       // Nothing came back. Nudge the adapter so it ends whatever it is doing.
+      // A bare CR interrupts the adapter or repeats the last command, which
+      // already passed the read-only check.
       try {
         await transport.write(ascii.encode('\r'));
         final second = Completer<String>();

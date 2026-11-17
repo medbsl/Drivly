@@ -46,18 +46,14 @@ void main() {
       expect(readings.map((e) => e.sensor), [Sensors.rpm]);
     });
 
-    test('reads, explains and clears codes', () async {
-      final (adapter, sim) = await _connected();
+    test('reads stored and pending codes', () async {
+      final (adapter, _) = await _connected();
       await adapter.initialize();
       final stored = (await adapter.readDtcs(DtcKind.stored)).valueOrNull!;
       final pending = (await adapter.readDtcs(DtcKind.pending)).valueOrNull!;
       expect(stored.map((d) => d.code), ['P0133']);
       expect(pending.map((d) => d.code), ['P0442']);
       expect(stored.single.ecu, '7E8');
-
-      expect((await adapter.clearDtcs()).isOk, isTrue);
-      expect(sim.car.stored, isEmpty);
-      expect((await adapter.readDtcs(DtcKind.stored)).valueOrNull, isEmpty);
     });
 
     test('reads the VIN (multi-frame)', () async {

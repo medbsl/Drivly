@@ -922,66 +922,6 @@ abstract class AppLocalizations {
   /// **'Not urgent'**
   String get actionMinor;
 
-  /// No description provided for @clearCodes.
-  ///
-  /// In en, this message translates to:
-  /// **'Clear codes'**
-  String get clearCodes;
-
-  /// No description provided for @stopCarFirst.
-  ///
-  /// In en, this message translates to:
-  /// **'Stop the car first'**
-  String get stopCarFirst;
-
-  /// No description provided for @clearTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{Clear 1 fault code?} other{Clear {count} fault codes?}}'**
-  String clearTitle(int count);
-
-  /// No description provided for @clearWarn1.
-  ///
-  /// In en, this message translates to:
-  /// **'This turns the engine light off but doesn\'t fix anything. If the problem is still there, the codes will come back.'**
-  String get clearWarn1;
-
-  /// No description provided for @clearWarn2.
-  ///
-  /// In en, this message translates to:
-  /// **'Your car\'s inspection checks reset. It may fail an emissions test (TÜV/AU, MOT, contrôle technique) until you\'ve driven for a few days.'**
-  String get clearWarn2;
-
-  /// No description provided for @clearWarn3.
-  ///
-  /// In en, this message translates to:
-  /// **'Engine off, ignition on.'**
-  String get clearWarn3;
-
-  /// No description provided for @clearSnapshotNote.
-  ///
-  /// In en, this message translates to:
-  /// **'A copy of these codes is saved to your scan history.'**
-  String get clearSnapshotNote;
-
-  /// No description provided for @clearDone.
-  ///
-  /// In en, this message translates to:
-  /// **'Codes cleared. No problems right now.'**
-  String get clearDone;
-
-  /// No description provided for @clearCameBack.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{1 code came back straight away: the problem is still there.} other{{count} codes came back straight away: the problem is still there.}}'**
-  String clearCameBack(int count);
-
-  /// No description provided for @clearFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t clear the codes. Try again with the engine off and ignition on.'**
-  String get clearFailed;
-
   /// No description provided for @whatYouMightNotice.
   ///
   /// In en, this message translates to:

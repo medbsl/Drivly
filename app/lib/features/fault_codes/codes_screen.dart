@@ -12,7 +12,6 @@ import '../../shared/widgets/app_card.dart';
 import '../../shared/widgets/states.dart';
 import '../../shared/widgets/status_pill.dart';
 import '../connection/connection_controller.dart';
-import '../live/live_data.dart';
 import 'dtc_controller.dart';
 import 'dtc_database.dart';
 
@@ -128,7 +127,6 @@ class CodesScreen extends ConsumerWidget {
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => context.push('/codes/history'),
             ),
-            if (last.codes.isNotEmpty && conn.isReady) const _ClearButton(),
           ],
         ),
       );
@@ -250,86 +248,5 @@ class _CodeCard extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class _ClearButton extends ConsumerWidget {
-  const _ClearButton();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l = context.l10n;
-    final c = context.colors;
-    final live = ref.watch(liveDataProvider);
-    return ListenableBuilder(
-      listenable: live,
-      builder: (context, _) {
-        final moving = (live.value(Sensors.speed) ?? 0) > 0;
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextButton.icon(
-              style: TextButton.styleFrom(foregroundColor: c.danger),
-              icon: const Icon(Icons.cleaning_services_outlined),
-              label: Text(l.clearCodes),
-              onPressed: moving ? null : () => _confirm(context, ref),
-            ),
-            if (moving)
-              Padding(
-                padding: const EdgeInsetsDirectional.only(start: Space.l),
-                child: Text(l.stopCarFirst, style: context.text.bodySmall),
-              ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> _confirm(BuildContext context, WidgetRef ref) async {
-    final l = context.l10n;
-    final c = context.colors;
-    final n = ref.read(dtcControllerProvider).last?.codes.length ?? 0;
-    final ok = await showAppSheet<bool>(
-      context,
-      builder: (ctx) => Padding(
-        padding: const EdgeInsets.fromLTRB(Space.xl, 0, Space.xl, Space.xl),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(l.clearTitle(n), style: ctx.text.titleLarge),
-            const SizedBox(height: Space.l),
-            for (final t in [l.clearWarn1, l.clearWarn2, l.clearWarn3])
-              Padding(
-                padding: const EdgeInsets.only(bottom: Space.m),
-                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Icon(Icons.info_outline_rounded, size: 20, color: c.textSecondary),
-                  const SizedBox(width: Space.m),
-                  Expanded(child: Text(t, style: ctx.text.bodyLarge)),
-                ]),
-              ),
-            Text(l.clearSnapshotNote, style: ctx.text.bodySmall),
-            const SizedBox(height: Space.l),
-            FilledButton(
-              style: FilledButton.styleFrom(backgroundColor: c.danger, foregroundColor: Colors.white),
-              onPressed: () => Navigator.pop(ctx, true),
-              child: Text(l.clearCodes),
-            ),
-            const SizedBox(height: Space.s),
-            OutlinedButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l.cancel)),
-          ],
-        ),
-      ),
-    );
-    if (ok != true || !context.mounted) return;
-    final result = await ref.read(dtcControllerProvider.notifier).clear();
-    if (!context.mounted) return;
-    final msg = switch (result) {
-      ClearResult.cleared => l.clearDone,
-      ClearResult.cameBack => l.clearCameBack(ref.read(dtcControllerProvider).last?.stored.length ?? 1),
-      ClearResult.blockedMoving => l.stopCarFirst,
-      ClearResult.failed => l.clearFailed,
-    };
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
   }
 }

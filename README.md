@@ -15,8 +15,10 @@ Fault codes are explained in plain words. You don't need an account, and nothing
   every value sits underneath.
 - **Trips:** recorded automatically, with distance, durations, max and average speed, fuel used and charts.
 - **Fault codes:** read automatically when you connect. You get the severity, what it means, whether it's
-  safe to drive and what to do. Clearing codes is guarded (blocked while moving, with a snapshot before
-  and a re-scan after), and every scan is kept in the history.
+  safe to drive and what to do. Every scan is kept in the history.
+- **Read-only:** Drivly only reads from your car and never changes anything in it. It can't clear codes,
+  and every command is checked against a list of read commands before it's sent
+  ([ADR-0002](docs/adr/0002-read-only.md)).
 - **Car info:** VIN, make, country and likely model year, decoded offline.
 - **Demo mode:** a simulated ELM327 adapter that runs the whole real stack, so it works with no car at all.
 

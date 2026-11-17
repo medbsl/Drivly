@@ -128,13 +128,4 @@ class SimulatedCar {
     distanceSinceClear += km;
     odometer += km;
   }
-
-  /// Mode 04.
-  void clearCodes() {
-    stored = [];
-    pending = [];
-    milOn = false;
-    distanceSinceClear = 0;
-    warmups = 0;
-  }
 }

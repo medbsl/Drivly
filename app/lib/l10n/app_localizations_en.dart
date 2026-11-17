@@ -494,57 +494,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get actionMinor => 'Not urgent';
 
   @override
-  String get clearCodes => 'Clear codes';
-
-  @override
-  String get stopCarFirst => 'Stop the car first';
-
-  @override
-  String clearTitle(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'Clear $count fault codes?',
-      one: 'Clear 1 fault code?',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get clearWarn1 =>
-      'This turns the engine light off but doesn\'t fix anything. If the problem is still there, the codes will come back.';
-
-  @override
-  String get clearWarn2 =>
-      'Your car\'s inspection checks reset. It may fail an emissions test (TÜV/AU, MOT, contrôle technique) until you\'ve driven for a few days.';
-
-  @override
-  String get clearWarn3 => 'Engine off, ignition on.';
-
-  @override
-  String get clearSnapshotNote =>
-      'A copy of these codes is saved to your scan history.';
-
-  @override
-  String get clearDone => 'Codes cleared. No problems right now.';
-
-  @override
-  String clearCameBack(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other:
-          '$count codes came back straight away: the problem is still there.',
-      one: '1 code came back straight away: the problem is still there.',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get clearFailed =>
-      'Couldn\'t clear the codes. Try again with the engine off and ignition on.';
-
-  @override
   String get whatYouMightNotice => 'What you might notice';
 
   @override

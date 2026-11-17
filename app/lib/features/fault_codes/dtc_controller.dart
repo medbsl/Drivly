@@ -8,32 +8,24 @@ import '../../app/providers.dart';
 import '../../data/models.dart';
 import '../../data/settings.dart';
 import '../connection/connection_controller.dart';
-import '../live/live_data.dart';
 
 enum DtcError { notConnected, carNotResponding, adapterBusy, failed }
 
-enum ClearResult { cleared, cameBack, failed, blockedMoving }
-
 @immutable
 class DtcState {
-  const DtcState({this.last, this.scanning = false, this.clearing = false, this.error, this.clearResult, this.loaded = false});
+  const DtcState({this.last, this.scanning = false, this.error, this.loaded = false});
 
   final DtcScan? last;
   final bool scanning;
-  final bool clearing;
   final DtcError? error;
-  final ClearResult? clearResult;
 
   /// Last scan was loaded from history (may be from an earlier session).
   final bool loaded;
 
-  DtcState copyWith({DtcScan? last, bool? scanning, bool? clearing, DtcError? error, bool clearError = false, ClearResult? clearResult, bool clearClearResult = false}) =>
-      DtcState(
+  DtcState copyWith({DtcScan? last, bool? scanning, DtcError? error, bool clearError = false}) => DtcState(
         last: last ?? this.last,
         scanning: scanning ?? this.scanning,
-        clearing: clearing ?? this.clearing,
         error: clearError ? null : error ?? this.error,
-        clearResult: clearClearResult ? null : clearResult ?? this.clearResult,
         loaded: true,
       );
 }
@@ -46,7 +38,10 @@ final scanHistoryProvider = FutureProvider<List<DtcScan>>((ref) {
   return ref.watch(dtcRepoProvider).history(vehicleId: vehicleId);
 });
 
-/// Reads (03, 07), explains and clears (04) fault codes. Every scan is saved.
+/// Reads (03, 07) and explains fault codes. Every scan is saved.
+///
+/// Read-only: Drivly never clears codes or changes anything in the car
+/// (docs/adr/0002-read-only.md).
 class DtcController extends Notifier<DtcState> {
   @override
   DtcState build() {
@@ -95,37 +90,5 @@ class DtcController extends Notifier<DtcState> {
     state = state.copyWith(last: saved, scanning: false);
     ref.read(dataVersionProvider.notifier).bump();
     return saved;
-  }
-
-  /// Mode 04, guarded: blocked while moving, snapshot before, re-scan after.
-  Future<ClearResult> clear() async {
-    final speed = ref.read(liveDataProvider).value(Sensors.speed) ?? 0;
-    if (speed > 0) return ClearResult.blockedMoving;
-    final adapter = ref.read(connectionProvider.notifier).adapter;
-    if (adapter == null) return ClearResult.failed;
-    state = state.copyWith(clearing: true, clearClearResult: true);
-
-    final before = state.last;
-    if (before != null) {
-      await ref.read(dtcRepoProvider).save(
-            vehicleId: ref.read(settingsProvider).lastVehicleId,
-            sessionId: ref.read(connectionProvider.notifier).session?.sessionIdOrNull,
-            milOn: before.milOn,
-            reason: ScanReason.beforeClear,
-            codes: before.codes,
-          );
-    }
-    final r = await adapter.clearDtcs();
-    if (!r.isOk) {
-      state = state.copyWith(clearing: false, clearResult: ClearResult.failed);
-      return ClearResult.failed;
-    }
-    await Future<void>.delayed(const Duration(milliseconds: 600));
-    final after = await scan(ScanReason.afterClear);
-    final result = after == null
-        ? ClearResult.failed
-        : (after.stored.isEmpty ? ClearResult.cleared : ClearResult.cameBack);
-    state = state.copyWith(clearing: false, clearResult: result);
-    return result;
   }
 }

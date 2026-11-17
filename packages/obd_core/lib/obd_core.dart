@@ -11,6 +11,7 @@ export 'src/dtc/dtc.dart';
 export 'src/elm327/elm327_adapter.dart';
 export 'src/elm327/elm_error.dart';
 export 'src/elm327/elm_session.dart';
+export 'src/elm327/read_only_guard.dart';
 export 'src/elm327/response_framer.dart';
 export 'src/elm327/sanitizer.dart';
 export 'src/pids/sensor.dart';

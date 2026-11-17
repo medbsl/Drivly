@@ -47,13 +47,13 @@ People who drive but aren't mechanics. They have three common moments:
 2. **Glanceable.** You can read a number in under a second. Values are large, there's little text, and the touch targets are big.
 3. **Never lie, never crash.** If we don't know a value, we say so and don't show a guess. Bad adapter data is thrown away and never reaches the screen.
 4. **Private by default.** Everything stays on the phone. There are no analytics SDKs, no crash-reporting SDKs and no runtime font downloads.
-5. **Safe.** The app is for passengers or parked use. Risky actions (clearing codes) are blocked while the car is moving.
+5. **Safe.** The app is for passengers or parked use. It **only reads** from the car and never changes anything in it ([ADR-0002](adr/0002-read-only.md)).
 
 ### Goals (v1.0)
 
 - Connect to an ELM327-compatible **Bluetooth LE** adapter reliably, including cheap clones.
 - Show live data for the 8 core values the car supports.
-- Read, explain and clear fault codes safely.
+- Read and explain fault codes (read-only: no clearing, see [ADR-0002](adr/0002-read-only.md)).
 - Read the VIN and decode the make and likely year offline.
 - Log trips automatically.
 - Ship in 4 languages with full RTL, plus a demo mode that works with no car.
@@ -119,10 +119,6 @@ flowchart LR
   H[Health card: '1 problem to check'] --> FL[Fault codes list]
   FL --> FD[Code detail:<br/>meaning · safe to drive? · what to do]
   FD --> S[Share with mechanic]
-  FL --> CC{Clear codes}
-  CC -->|car moving| BLK[Blocked: 'Stop the car first']
-  CC -->|parked| W[Warning sheet<br/>auto-saves codes to history]
-  W --> CL[Mode 04 → re-scan → result]
 ```
 
 ### 2.4 Connection state machine
@@ -479,7 +475,6 @@ Plain status words on tiles:
 │ └──────────────────────────────┘ │
 │                                  │
 │  Scan history  >                 │
-│  Clear codes                     │  danger text button, last on page
 └──────────────────────────────────┘
 ```
 
@@ -535,7 +530,9 @@ Plain status words on tiles:
 
 **Share** sends a plain-text summary through the share sheet (codes, titles, date, plus make and year if known; the VIN only if the user ticks "include VIN").
 
-### 4.6 Clear codes flow
+### 4.6 Clear codes flow (removed)
+
+**Removed on 2026-11-17: Drivly is read-only toward the car ([ADR-0002](adr/0002-read-only.md)).** The original flow is kept below for reference only.
 
 1. **Precondition:** if speed > 0, the button is disabled with the caption *"Stop the car first"*.
 2. Tapping it opens a bottom sheet:
@@ -827,7 +824,6 @@ abstract interface class DiagnosticAdapter {
   Future<ObdResult<PidValue>> readPid(Pid pid);
   Future<ObdResult<MonitorStatus>> readMonitorStatus();    // 0101: engine light + count
   Future<ObdResult<List<Dtc>>> readDtcs(DtcKind kind);     // stored (03) / pending (07)
-  Future<ObdResult<void>> clearDtcs();                     // 04
   Future<ObdResult<String>> readVin();                     // 0902
   Future<ObdResult<double>> readBatteryVoltage();          // ATRV
   Future<void> close();
@@ -954,7 +950,7 @@ Every dependency must be GPL-3.0-compatible (MIT, BSD or Apache-2.0 are fine). C
 |---|---|
 | `vehicles` | id, vin?, nickname?, make?, modelYear?, modelUser?, protocol?, supportedPids (blob) |
 | `adapters` | id, remoteId, name, transport, elmVersion?, lastConnectedAt, preferred |
-| `dtc_scans` | id, vehicleId, at, milOn, reason (`auto`, `manual`, `beforeClear`, `afterClear`) |
+| `dtc_scans` | id, vehicleId, at, milOn, reason (`auto`, `manual`; `beforeClear`/`afterClear` only in old history) |
 | `dtc_entries` | scanId, code, kind (`stored`/`pending`), ecu? |
 | `trips` | id, vehicleId, startedAt, endedAt, distanceKm, maxSpeed, avgSpeed, maxCoolant, idleSeconds |
 | `trip_samples` | tripId, t, speed, rpm, coolant, load, throttle (**1 Hz**, so premium charts and export will work on past trips) |
@@ -997,7 +993,7 @@ disconnects) for resilience tests.
 | Never crash on bad adapter data | `ObdResult` sealed type, no throwing in `obd_core`, range checks on every decoded value, fuzz tests feeding random bytes to the framer and parser, plus a top-level `FlutterError.onError` / `runZonedGuarded` that logs locally |
 | Efficient polling (~5–10/s) | Weighted scheduler, poll only what's visible, response-count suffix, adaptive backoff (§5.5) |
 | Cheap clones | Lenient sanitizer, per-step init fallbacks, stale-reply validation, transcript tests from real clones, adapter log for bug reports |
-| Safety | One-time notice, passenger strip while moving, clearing codes blocked while moving, no interactions that require attention while moving |
+| Safety | Read-only toward the car (allowlist guard, ADR-0002), one-time notice, passenger strip while moving, no interactions that require attention while moving |
 | Privacy | No network permission use in v1 except user-initiated links, no analytics or crash SDKs, system fonts, store privacy labels "Data Not Collected" |
 | Accessibility | §3.6, tested with TalkBack/VoiceOver and at 200% text |
 | Code quality | Strict lints, CI on every PR, ≥ 90% line coverage on `obd_core`, ADRs for big decisions |
@@ -1008,7 +1004,7 @@ disconnects) for resilience tests.
 
 1. **`obd_core` unit tests (written first, TDD).** Framer (split chunks, missing `>`, `\0` bytes). Sanitizer (echo, spaces, `SEARCHING...`). Error classification. Each PID decoder against known vectors. Supported-PID bitmask. DTC decode (`0133`→`P0133`, `C123`→`U0123`, padding). ISO-TP reassembly including interleaved ECUs. VIN parse + model year. Scheduler fairness.
 2. **Transcript replay tests.** Real TX/RX logs from adapter + car combinations go in `test/fixtures/transcripts/`, and a `ReplayTransport` plays them back. Users can contribute these through the "adapter compatibility" issue template, which grows coverage of odd clones over time.
-3. **Simulator tests.** Full init → live data → DTC → clear flows against `Elm327Simulator`, including injected faults.
+3. **Simulator tests.** Full init → live data → DTC flows against `Elm327Simulator`, including injected faults, plus a check that every command sent is a read.
 4. **Widget and golden tests.** Shared state widgets, gauges and tiles in dark/light × LTR/RTL × 100%/200% text.
 5. **Integration tests** (`integration_test/`) driving the app in demo mode.
 6. **Manual hardware matrix** before each release: at least 2 BLE adapters (a cheap v1.5 clone and a quality one such as Vgate iCar Pro BLE / OBDLink CX) × at least 1 CAN car (plus 1 legacy car if available). Covers iOS and Android 11/12+.
@@ -1055,10 +1051,10 @@ Each phase ends with a **"done when"** you can check. Phases 0–1 are the path 
 - **Done when:** on a real car the dashboard shows only supported values at ~5–10 total updates/s with no visible jitter, unsupported values are listed in the footnote, and demo mode looks identical apart from the badge.
 
 ### Phase 5: Fault codes
-- `IsoTpAssembler`, `0101` monitor status, modes `03`, `07` and `04`, DTC decoder.
+- `IsoTpAssembler`, `0101` monitor status, modes `03` and `07`, DTC decoder.
 - `dtc_database` package: schema, loader, fallback chain, first ~50 codes in EN (grow to ~200 + translations before 1.0).
-- List, detail, share, scan history, clear flow with moving-block and auto re-scan.
-- **Done when:** codes are read correctly on a real car with a known fault (or the simulator), the clear flow works end-to-end, and the history keeps the before/after snapshots.
+- List, detail, share, scan history. (The clear flow was removed: ADR-0002.)
+- **Done when:** codes are read correctly on a real car with a known fault (or the simulator) and every scan is kept in the history.
 
 ### Phase 6: Vehicle info
 - `0902` VIN (multi-frame), WMI table asset generated from NHTSA vPIC data by a script in `tool/`, model-year logic, manual VIN entry, adapter card.
@@ -1140,7 +1136,7 @@ These are **calls I made in this draft**, not things you've agreed to. Change an
 | Protocol | Headers on (`ATH1`) from day one. Parser also tolerates header-less replies |
 | Battery | `ATRV` (adapter-measured) as primary, `0142` as fallback |
 | Codes | Auto-scanned on connect so the health summary is meaningful |
-| Clearing codes | Blocked while speed > 0. Auto-snapshot before clearing, auto re-scan after |
+| Clearing codes | Not supported. Drivly only reads from the car (ADR-0002) |
 | Vehicle | Make + likely year decoded offline. Model entered by the user, no online VIN lookup |
 | Trips | Auto start/stop, foreground-only in v1, 1 Hz samples stored for future charts and export |
 | Demo mode | Simulated ELM327 at transport level (whole stack runs). Permanent DEMO badge |
