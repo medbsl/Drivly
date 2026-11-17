@@ -1274,4 +1274,21 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get sensorLtftInfo =>
       'Fuel corrections the engine has learned over time. Beyond about ±10% can point to a leak or a sensor problem.';
+
+  @override
+  String get webChooseTitle => 'Pick your adapter';
+
+  @override
+  String get webChooseBody =>
+      'Your browser shows nearby Bluetooth devices in its own window. Choose your OBD adapter (often called OBDII, Vlink or Vgate).';
+
+  @override
+  String get webChooseAdapter => 'Choose adapter';
+
+  @override
+  String get bleUnsupportedTitle => 'Bluetooth isn\'t available here';
+
+  @override
+  String get bleUnsupportedBody =>
+      'This browser can\'t use Bluetooth. Open Drivly in Chrome or Edge on a computer with Bluetooth, or try demo mode.';
 }

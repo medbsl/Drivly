@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,7 +28,8 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => ref.read(bleScanProvider.notifier).start());
+    // Browsers only open the Bluetooth picker from a click.
+    if (!kIsWeb) Future.microtask(() => ref.read(bleScanProvider.notifier).start());
   }
 
   @override
@@ -59,7 +61,9 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
       appBar: AppBar(title: Text(l.connectAdapter)),
       body: problem != null
           ? Center(child: SingleChildScrollView(child: _ProblemView(problem: problem)))
-          : ListView(
+          : kIsWeb
+              ? const _BrowserConnect()
+              : ListView(
               padding: const EdgeInsets.fromLTRB(Space.l, 0, Space.l, Space.xxl),
               children: [
                 _ScanRow(scanning: scan.scanning, onRescan: () => ref.read(bleScanProvider.notifier).start()),
@@ -148,6 +152,38 @@ void _openConnecting(BuildContext context, WidgetRef ref, AdapterRef device) {
     ctrl.connectBle(device.id, device.name);
   }
   showAppSheet<void>(context, scrollable: false, builder: (_) => const ConnectingSheet());
+}
+
+/// Browser flow: one button that opens Chrome's Bluetooth picker.
+class _BrowserConnect extends ConsumerWidget {
+  const _BrowserConnect();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            EmptyState(
+              icon: Icons.bluetooth_searching_rounded,
+              title: l.webChooseTitle,
+              body: l.webChooseBody,
+              primaryLabel: l.webChooseAdapter,
+              onPrimary: () async {
+                final d = await ref.read(bleScanProvider.notifier).pickInBrowser();
+                if (d != null && context.mounted) {
+                  _openConnecting(context, ref, AdapterRef(id: d.id, name: d.name));
+                }
+              },
+              secondaryLabel: l.tryDemo,
+              onSecondary: () => _openConnecting(context, ref, const AdapterRef.demo()),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _ScanRow extends StatelessWidget {
@@ -281,6 +317,14 @@ class _ProblemView extends ConsumerWidget {
           onPrimary: scan.start,
           secondaryLabel: l.openSettings,
           onSecondary: openAppSettings,
+        ),
+      ScanProblem.unsupported => EmptyState(
+          icon: Icons.bluetooth_disabled_rounded,
+          tone: StatusTone.warn,
+          title: l.bleUnsupportedTitle,
+          body: l.bleUnsupportedBody,
+          primaryLabel: l.tryDemo,
+          onPrimary: demo,
         ),
       _ => EmptyState(
           icon: Icons.error_outline_rounded,

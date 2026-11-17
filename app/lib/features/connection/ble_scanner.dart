@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:universal_ble/universal_ble.dart';
 
+import 'ble_transport.dart' show knownObdServices;
+
 final _likely = RegExp(r'OBD|ELM|V-?LINK|VGATE|VEEPEAK|OBDLINK|KONNWEI|ICAR|CAR', caseSensitive: false);
 
 @immutable
@@ -87,6 +89,30 @@ class BleScanController extends Notifier<ScanState> {
     } catch (e) {
       debugPrint('scan failed: $e');
       _fail(ScanProblem.failed);
+    }
+  }
+
+  /// Browser: Chrome's own device picker (needs a user gesture, so it is
+  /// called from a button). Returns null when the user cancels.
+  Future<FoundDevice?> pickInBrowser() async {
+    state = state.copyWith(clearProblem: true);
+    try {
+      final availability = await UniversalBle.getBluetoothAvailabilityState();
+      if (availability == AvailabilityState.unsupported) {
+        _fail(ScanProblem.unsupported);
+        return null;
+      }
+      final d = await UniversalBle.requestDevice(
+        platformConfig: PickerPlatformConfig(web: WebOptions(optionalServices: knownObdServices)),
+      );
+      final name = (d.name ?? d.rawName ?? '').trim();
+      return FoundDevice(id: d.deviceId, name: name.isEmpty ? 'OBD adapter' : name, rssi: d.rssi ?? -60);
+    } on WebBluetoothGloballyDisabled {
+      _fail(ScanProblem.unsupported);
+      return null;
+    } catch (e) {
+      debugPrint('browser picker: $e'); // cancelled, usually
+      return null;
     }
   }
 

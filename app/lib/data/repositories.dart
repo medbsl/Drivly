@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:obd_core/obd_core.dart';
@@ -132,12 +131,9 @@ class HistoryRepository {
     final s = Sqflite.firstIntValue(await _d.rawQuery('SELECT COUNT(*) FROM sessions')) ?? 0;
     final tr = Sqflite.firstIntValue(await _d.rawQuery('SELECT COUNT(*) FROM trips')) ?? 0;
     final since = await firstReadingAt();
-    var bytes = 0;
-    try {
-      bytes = await File(_d.path).length();
-      final wal = File('${_d.path}-wal');
-      if (await wal.exists()) bytes += await wal.length();
-    } catch (_) {}
+    final pages = Sqflite.firstIntValue(await _d.rawQuery('PRAGMA page_count')) ?? 0;
+    final pageSize = Sqflite.firstIntValue(await _d.rawQuery('PRAGMA page_size')) ?? 0;
+    final bytes = pages * pageSize;
     return StorageStats(readings: n, sessions: s, trips: tr, bytes: bytes, since: since);
   }
 

@@ -2294,6 +2294,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fuel corrections the engine has learned over time. Beyond about ±10% can point to a leak or a sensor problem.'**
   String get sensorLtftInfo;
+
+  /// No description provided for @webChooseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick your adapter'**
+  String get webChooseTitle;
+
+  /// No description provided for @webChooseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your browser shows nearby Bluetooth devices in its own window. Choose your OBD adapter (often called OBDII, Vlink or Vgate).'**
+  String get webChooseBody;
+
+  /// No description provided for @webChooseAdapter.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose adapter'**
+  String get webChooseAdapter;
+
+  /// No description provided for @bleUnsupportedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth isn\'t available here'**
+  String get bleUnsupportedTitle;
+
+  /// No description provided for @bleUnsupportedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This browser can\'t use Bluetooth. Open Drivly in Chrome or Edge on a computer with Bluetooth, or try demo mode.'**
+  String get bleUnsupportedBody;
 }
 
 class _AppLocalizationsDelegate

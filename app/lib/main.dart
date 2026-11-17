@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sqflite/sqflite.dart' show databaseFactory;
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
 import 'app/app.dart';
 import 'app/providers.dart';
@@ -18,6 +21,8 @@ Future<void> main() async {
   };
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+    // Browser: SQLite compiled to WebAssembly, stored in IndexedDB.
+    if (kIsWeb) databaseFactory = databaseFactoryFfiWeb;
     final results = await Future.wait([
       SharedPreferences.getInstance(),
       AppDatabase.open(),

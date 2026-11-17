@@ -263,9 +263,9 @@ class TimeSeriesChart extends StatelessWidget {
 
   static ChartPoint? _nearest(List<ChartPoint> pts, DateTime t) {
     ChartPoint? best;
-    var bestD = 1 << 62;
+    var bestD = double.maxFinite;
     for (final p in pts) {
-      final d = (p.t.millisecondsSinceEpoch - t.millisecondsSinceEpoch).abs();
+      final d = (p.t.millisecondsSinceEpoch - t.millisecondsSinceEpoch).abs().toDouble();
       if (d < bestD) {
         bestD = d;
         best = p;

@@ -13,6 +13,10 @@ const _knownLayouts = [
   ('e7810a71-73ae-499d-8c15-faa9aef0c3f2', 'bef8d6c9-9c21-4c9e-b632-bd58c1009f9f', 'bef8d6c9-9c21-4c9e-b632-bd58c1009f9f'), // Vgate iCar Pro BLE
 ];
 
+/// Services the browser must be told about up front (Web Bluetooth only
+/// exposes services listed when the device is picked).
+final knownObdServices = [for (final (svc, _, _) in _knownLayouts) BleUuidParser.string(svc)];
+
 const _ignoredServices = {'1800', '1801', '180a', '180f'};
 
 String _norm(String uuid) => BleUuidParser.string(uuid).toLowerCase();

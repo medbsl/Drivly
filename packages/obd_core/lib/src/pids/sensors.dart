@@ -20,7 +20,8 @@ double _lambda(List<int> d) => _ab(d) * 2 / 65536;
 double _injTiming(List<int> d) => _ab(d) / 128 - 210;
 double _fuelRate(List<int> d) => _ab(d) / 20;
 double _torquePct(List<int> d) => d[0] - 125.0;
-double _odometer(List<int> d) => ((d[0] << 24) | (d[1] << 16) | (d[2] << 8) | d[3]) / 10;
+// Multiplication, not shifts: bitwise ops are 32-bit signed on the web.
+double _odometer(List<int> d) => (d[0] * 16777216.0 + d[1] * 65536 + d[2] * 256 + d[3]) / 10;
 
 /// Every value Drivly knows how to read. Order = default display order.
 abstract final class Sensors {

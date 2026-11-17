@@ -555,5 +555,10 @@
     }
   },
   "sensorStftInfo": "Quick fuel corrections the engine makes right now. Values near 0% are ideal; large swings are normal.",
-  "sensorLtftInfo": "Fuel corrections the engine has learned over time. Beyond about ±10% can point to a leak or a sensor problem."
+  "sensorLtftInfo": "Fuel corrections the engine has learned over time. Beyond about ±10% can point to a leak or a sensor problem.",
+  "webChooseTitle": "Pick your adapter",
+  "webChooseBody": "Your browser shows nearby Bluetooth devices in its own window. Choose your OBD adapter (often called OBDII, Vlink or Vgate).",
+  "webChooseAdapter": "Choose adapter",
+  "bleUnsupportedTitle": "Bluetooth isn't available here",
+  "bleUnsupportedBody": "This browser can't use Bluetooth. Open Drivly in Chrome or Edge on a computer with Bluetooth, or try demo mode."
 }

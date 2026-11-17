@@ -20,8 +20,12 @@ class AppDatabase {
       options: OpenDatabaseOptions(
         version: _version,
         onConfigure: (db) async {
-          await db.rawQuery('PRAGMA journal_mode = WAL');
-          await db.execute('PRAGMA synchronous = NORMAL');
+          try {
+            await db.rawQuery('PRAGMA journal_mode = WAL');
+            await db.execute('PRAGMA synchronous = NORMAL');
+          } catch (_) {
+            // Not supported on every backend (e.g. the web build).
+          }
         },
         onCreate: (db, version) async {
           final b = db.batch();

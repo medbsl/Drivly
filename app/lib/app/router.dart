@@ -28,6 +28,8 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: '/dashboard',
     refreshListenable: onboarding,
     redirect: (context, state) {
+      // Browsers can land on "/" (reload, back button): that's Home.
+      if (state.uri.path == '/' || state.uri.path.isEmpty) return onboarding.value ? '/dashboard' : '/onboarding';
       final atOnboarding = state.matchedLocation == '/onboarding';
       if (!onboarding.value && !atOnboarding) return '/onboarding';
       return null;

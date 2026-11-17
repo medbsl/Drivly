@@ -1,0 +1,47 @@
+{
+  // Run from the Command Palette: "Debug: Select and Start Debugging",
+  // or pick a configuration in the Run and Debug panel and press F5.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Drivly · Demo · Chrome",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "app",
+      "program": "lib/main.dart",
+      "deviceId": "chrome",
+      "toolArgs": ["--dart-define=DRIVLY_DEMO=true"]
+    },
+    {
+      "name": "Drivly · Chrome (real adapter via Web Bluetooth)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "app",
+      "program": "lib/main.dart",
+      "deviceId": "chrome"
+    },
+    {
+      "name": "Drivly · Demo · selected device",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "app",
+      "program": "lib/main.dart",
+      "toolArgs": ["--dart-define=DRIVLY_DEMO=true"]
+    },
+    {
+      "name": "Drivly · selected device",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "app",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "Drivly · selected device (release)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "app",
+      "program": "lib/main.dart",
+      "flutterMode": "release"
+    }
+  ]
+}
