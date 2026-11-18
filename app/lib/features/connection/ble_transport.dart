@@ -21,6 +21,42 @@ const _ignoredServices = {'1800', '1801', '180a', '180f'};
 
 String _norm(String uuid) => BleUuidParser.string(uuid).toLowerCase();
 
+/// The serial channel of an ELM327 BLE adapter (UUIDs normalised).
+typedef SerialLayout = ({String service, String notify, String write, bool withoutResponse});
+
+/// Finds the adapter's serial channel: a known layout first, otherwise the
+/// first non-standard service with a notify/indicate and a write
+/// characteristic. Null when there is none.
+SerialLayout? pickSerialLayout(List<BleService> services) {
+  SerialLayout use(BleService s, BleCharacteristic n, BleCharacteristic w) => (
+        service: _norm(s.uuid),
+        notify: _norm(n.uuid),
+        write: _norm(w.uuid),
+        // Write-without-response is faster; ELM commands fit in 20 bytes.
+        withoutResponse: w.properties.contains(CharacteristicProperty.writeWithoutResponse),
+      );
+
+  final byUuid = {for (final s in services) _norm(s.uuid): s};
+  for (final (svc, n, w) in _knownLayouts) {
+    final s = byUuid[_norm(svc)];
+    if (s == null) continue;
+    final chars = {for (final c in s.characteristics) _norm(c.uuid): c};
+    final nc = chars[_norm(n)];
+    final wc = chars[_norm(w)];
+    if (nc != null && wc != null) return use(s, nc, wc);
+  }
+  for (final s in services) {
+    if (_ignoredServices.any((x) => _norm(s.uuid) == _norm(x))) continue;
+    final n = s.characteristics.where((c) =>
+        c.properties.contains(CharacteristicProperty.notify) || c.properties.contains(CharacteristicProperty.indicate));
+    final w = s.characteristics.where((c) =>
+        c.properties.contains(CharacteristicProperty.write) ||
+        c.properties.contains(CharacteristicProperty.writeWithoutResponse));
+    if (n.isNotEmpty && w.isNotEmpty) return use(s, n.first, w.first);
+  }
+  return null;
+}
+
 /// [ObdTransport] over Bluetooth LE (iOS + Android).
 class BleTransport implements ObdTransport {
   BleTransport({required this.deviceId, required this.deviceName});
@@ -64,10 +100,12 @@ class BleTransport implements ObdTransport {
     try {
       await UniversalBle.connect(deviceId, timeout: timeout);
       final services = await UniversalBle.discoverServices(deviceId);
-      _pickCharacteristics(services);
-      if (_service == null) {
-        throw const TransportException('no serial characteristic found');
-      }
+      final layout = pickSerialLayout(services);
+      if (layout == null) throw const TransportException('no serial characteristic found');
+      _service = layout.service;
+      _notifyChar = layout.notify;
+      _writeChar = layout.write;
+      _withoutResponse = layout.withoutResponse;
       _valueSub = UniversalBle.characteristicValueStream(deviceId, _notifyChar!).listen(_incoming.add);
       final notify = services
           .firstWhere((s) => _norm(s.uuid) == _service)
@@ -91,42 +129,6 @@ class BleTransport implements ObdTransport {
       await _safeDisconnect();
       throw TransportException(e.toString());
     }
-  }
-
-  void _pickCharacteristics(List<BleService> services) {
-    final byUuid = {for (final s in services) _norm(s.uuid): s};
-    for (final (svc, n, w) in _knownLayouts) {
-      final s = byUuid[_norm(svc)];
-      if (s == null) continue;
-      final chars = {for (final c in s.characteristics) _norm(c.uuid): c};
-      final nc = chars[_norm(n)];
-      final wc = chars[_norm(w)];
-      if (nc != null && wc != null) {
-        _use(s, nc, wc);
-        return;
-      }
-    }
-    // Heuristic: first service with a notify/indicate and a write characteristic.
-    for (final s in services) {
-      if (_ignoredServices.any((x) => _norm(s.uuid) == _norm(x))) continue;
-      final n = s.characteristics.where((c) =>
-          c.properties.contains(CharacteristicProperty.notify) || c.properties.contains(CharacteristicProperty.indicate));
-      final w = s.characteristics.where((c) =>
-          c.properties.contains(CharacteristicProperty.write) ||
-          c.properties.contains(CharacteristicProperty.writeWithoutResponse));
-      if (n.isNotEmpty && w.isNotEmpty) {
-        _use(s, n.first, w.first);
-        return;
-      }
-    }
-  }
-
-  void _use(BleService s, BleCharacteristic n, BleCharacteristic w) {
-    _service = _norm(s.uuid);
-    _notifyChar = _norm(n.uuid);
-    _writeChar = _norm(w.uuid);
-    // Write-without-response is faster; ELM commands fit in 20 bytes.
-    _withoutResponse = w.properties.contains(CharacteristicProperty.writeWithoutResponse);
   }
 
   @override

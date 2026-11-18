@@ -80,6 +80,20 @@ final connectionProvider = NotifierProvider<ConnectionController, ConnState>(Con
 /// Shared raw TX/RX log (Settings → Adapter log).
 final adapterLogProvider = Provider<AdapterLog>((ref) => AdapterLog());
 
+/// Makes the transport for a connection: the simulator for the demo (one
+/// simulated car per app run, so the demo drive carries on after a
+/// reconnect), Bluetooth LE otherwise. Tests override it.
+final transportFactoryProvider = Provider<ObdTransport Function(AdapterRef device)>((ref) {
+  SimulatedCar? demoCar;
+  return (device) => device.demo
+      ? Elm327Simulator(car: demoCar ??= SimulatedCar(seed: Random().nextInt(1 << 20)))
+      : BleTransport(deviceId: device.id, deviceName: device.name);
+});
+
+/// Scales every adapter timeout: 1.0 in the app. Tests shrink it so a silent
+/// adapter fails in milliseconds instead of seconds.
+final adapterTimeoutScaleProvider = Provider<double>((ref) => 1.0);
+
 class ConnectionController extends Notifier<ConnState> {
   ObdTransport? _transport;
   Elm327Adapter? _adapter;
@@ -87,7 +101,6 @@ class ConnectionController extends Notifier<ConnState> {
   StreamSubscription<TransportStatus>? _statusSub;
   Timer? _retryTimer;
   int _generation = 0;
-  SimulatedCar? _demoCar;
 
   static const _backoff = [1, 2, 5, 10, 15];
 
@@ -150,9 +163,7 @@ class ConnectionController extends Notifier<ConnState> {
       attempt: reconnect ? state.attempt : 0,
     );
 
-    final transport = device.demo
-        ? Elm327Simulator(car: _demoCar ??= SimulatedCar(seed: Random().nextInt(1 << 20)))
-        : BleTransport(deviceId: device.id, deviceName: device.name);
+    final transport = ref.read(transportFactoryProvider)(device);
     _transport = transport;
     try {
       await transport.connect(timeout: const Duration(seconds: 10));
@@ -172,7 +183,11 @@ class ConnectionController extends Notifier<ConnState> {
       if (s == TransportStatus.disconnected && gen == _generation && state.isReady) _onLost(gen);
     });
 
-    final adapter = Elm327Adapter(transport, log: ref.read(adapterLogProvider));
+    final adapter = Elm327Adapter(
+      transport,
+      log: ref.read(adapterLogProvider),
+      timeoutScale: ref.read(adapterTimeoutScaleProvider),
+    );
     _adapter = adapter;
     if (!reconnect) state = state.copyWith(phase: ConnPhase.initializingAdapter);
     final result = await adapter.initialize(onStage: (stage) {
