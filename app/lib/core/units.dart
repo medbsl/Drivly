@@ -50,7 +50,8 @@ class Units {
   static String number(double v, int decimals) {
     final f = NumberFormat.decimalPatternDigits(decimalDigits: decimals);
     final out = f.format(v);
-    return out == '-0' ? '0' : out;
+    // A small negative that rounds to zero would read "-0" or "-0.0".
+    return out.startsWith('-') && !out.contains(RegExp('[1-9]')) ? out.substring(1) : out;
   }
 }
 
