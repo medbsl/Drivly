@@ -51,7 +51,9 @@ class DtcController extends Notifier<DtcState> {
   }
 
   Future<void> _loadLast(String? vehicleId) async {
+    if (!ref.mounted) return;
     final scans = await ref.read(dtcRepoProvider).history(vehicleId: vehicleId, limit: 1);
+    if (!ref.mounted) return;
     if (scans.isNotEmpty && state.last == null) state = state.copyWith(last: scans.first);
   }
 
@@ -74,6 +76,9 @@ class DtcController extends Notifier<DtcState> {
     final status = await adapter.readMonitorStatus();
     final stored = await adapter.readDtcs(DtcKind.stored);
     final pending = await adapter.readDtcs(DtcKind.pending);
+    // Disposed (app shutting down) while the car answered: nothing left to
+    // update, and using ref now would throw.
+    if (!ref.mounted) return null;
     final failure = _check(stored) ?? _check(status);
     if (failure != null) {
       state = state.copyWith(scanning: false, error: _map(failure));
@@ -87,6 +92,7 @@ class DtcController extends Notifier<DtcState> {
           reason: reason,
           codes: [...stored.valueOrNull ?? const <Dtc>[], ...pending.valueOrNull ?? const <Dtc>[]],
         );
+    if (!ref.mounted) return saved;
     state = state.copyWith(last: saved, scanning: false);
     ref.read(dataVersionProvider.notifier).bump();
     return saved;
