@@ -6,3 +6,4 @@ build/
 
 # Machine-specific editor settings (e.g. local Flutter SDK path)
 .vscode/settings.json
+.superpowers/

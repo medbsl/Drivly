@@ -27,3 +27,21 @@ List<String> sanitizeResponse(String raw, {String? command}) {
 /// True when a sanitized line is hex data (optionally with a `N:` segment
 /// prefix used by header-less multi-frame replies).
 bool isHexDataLine(String line) => _hexLine.hasMatch(line.replaceAll(' ', ''));
+
+/// Makes control characters visible for logs: CR as `\r`, LF as `\n`,
+/// anything else below 0x20 as `\xNN`.
+String showControlChars(String s) {
+  final out = StringBuffer();
+  for (final c in s.codeUnits) {
+    if (c == 0x0D) {
+      out.write(r'\r');
+    } else if (c == 0x0A) {
+      out.write(r'\n');
+    } else if (c < 0x20) {
+      out.write('\\x${c.toRadixString(16).padLeft(2, '0').toUpperCase()}');
+    } else {
+      out.writeCharCode(c);
+    }
+  }
+  return out.toString();
+}

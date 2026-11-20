@@ -113,11 +113,14 @@ class ElmSession {
       _pending = null;
       _consecutiveTimeouts++;
       log.add(LogDirection.rx, '(no reply after ${timeout.inMilliseconds} ms)');
+      final partial = _framer.pending;
+      if (log.verbose && partial.isNotEmpty) log.add(LogDirection.info, 'partial: ${showControlChars(partial)}');
       await _flushAfterTimeout();
       return ElmResponse.timeout(command);
     }
     _pending = null;
     _consecutiveTimeouts = 0;
+    if (log.verbose) log.add(LogDirection.info, 'raw: ${showControlChars(raw)}');
     final isAt = command.toUpperCase().startsWith('AT');
     final lines = sanitizeResponse(raw, command: command);
     log.add(LogDirection.rx, lines.isEmpty ? '(empty)' : lines.join(' | '));

@@ -26,6 +26,11 @@ class AdapterLog {
   AdapterLog({this.capacity = 500});
 
   final int capacity;
+
+  /// When set, the session also logs each raw reply (and any partial reply
+  /// left by a timeout). Debug logging turns it on.
+  bool verbose = false;
+
   final List<LogEntry> _entries = [];
   final _controller = StreamController<LogEntry>.broadcast();
 
