@@ -87,7 +87,11 @@ final transportFactoryProvider = Provider<ObdTransport Function(AdapterRef devic
   SimulatedCar? demoCar;
   return (device) => device.demo
       ? Elm327Simulator(car: demoCar ??= SimulatedCar(seed: Random().nextInt(1 << 20)))
-      : BleTransport(deviceId: device.id, deviceName: device.name);
+      : BleTransport(
+          deviceId: device.id,
+          deviceName: device.name,
+          trace: (m) => ref.read(adapterLogProvider).add(LogDirection.info, 'ble: $m'),
+        );
 });
 
 /// Scales every adapter timeout: 1.0 in the app. Tests shrink it so a silent
