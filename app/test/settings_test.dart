@@ -32,6 +32,7 @@ void main() {
     expect(s.safetyNoticeSeen, isFalse);
     expect(s.savedAdapterId, isNull);
     expect(s.lastVehicleId, isNull);
+    expect(s.debugLogging, isFalse);
   });
 
   test('every setting is saved and survives a relaunch', () async {
@@ -46,7 +47,8 @@ void main() {
       ..setOnboardingDone(true)
       ..setSafetyNoticeSeen()
       ..saveAdapter('AA:BB', 'OBDII')
-      ..setLastVehicle('car-1');
+      ..setLastVehicle('car-1')
+      ..setDebugLogging(true);
 
     for (final s in [c.read(settingsProvider), _relaunch(c).read(settingsProvider)]) {
       expect(s.speedUnit, SpeedUnit.mph);
@@ -60,6 +62,7 @@ void main() {
       expect(s.savedAdapterId, 'AA:BB');
       expect(s.savedAdapterName, 'OBDII');
       expect(s.lastVehicleId, 'car-1');
+      expect(s.debugLogging, isTrue);
     }
   });
 

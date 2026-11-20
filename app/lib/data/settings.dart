@@ -20,6 +20,7 @@ class AppSettings {
     this.savedAdapterId,
     this.savedAdapterName,
     this.lastVehicleId,
+    this.debugLogging = false,
   });
 
   final SpeedUnit speedUnit;
@@ -34,6 +35,9 @@ class AppSettings {
   final String? savedAdapterName;
   final String? lastVehicleId;
 
+  /// Records connection details to a file for bug reports (Settings › Adapter).
+  final bool debugLogging;
+
   AppSettings copyWith({
     SpeedUnit? speedUnit,
     TempUnit? tempUnit,
@@ -46,6 +50,7 @@ class AppSettings {
     String? savedAdapterId,
     String? savedAdapterName,
     String? lastVehicleId,
+    bool? debugLogging,
     bool clearAdapter = false,
   }) =>
       AppSettings(
@@ -60,6 +65,7 @@ class AppSettings {
         savedAdapterId: clearAdapter ? null : savedAdapterId ?? this.savedAdapterId,
         savedAdapterName: clearAdapter ? null : savedAdapterName ?? this.savedAdapterName,
         lastVehicleId: lastVehicleId ?? this.lastVehicleId,
+        debugLogging: debugLogging ?? this.debugLogging,
       );
 }
 
@@ -86,6 +92,7 @@ class SettingsController extends Notifier<AppSettings> {
       savedAdapterId: _p.getString('savedAdapterId'),
       savedAdapterName: _p.getString('savedAdapterName'),
       lastVehicleId: _p.getString('lastVehicleId'),
+      debugLogging: _p.getBool('debugLogging') ?? false,
     );
   }
 
@@ -117,6 +124,11 @@ class SettingsController extends Notifier<AppSettings> {
   void setAutoRecordTrips(bool v) {
     _p.setBool('autoRecordTrips', v);
     state = state.copyWith(autoRecordTrips: v);
+  }
+
+  void setDebugLogging(bool v) {
+    _p.setBool('debugLogging', v);
+    state = state.copyWith(debugLogging: v);
   }
 
   void setOnboardingDone(bool v) {

@@ -5,6 +5,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../data/settings.dart';
 import '../features/connection/connection_controller.dart';
+import '../features/debug/debug_recorder.dart';
 import '../l10n/app_localizations.dart';
 import 'dev_tour.dart';
 import 'router.dart';
@@ -41,6 +42,8 @@ class _DrivlyAppState extends ConsumerState<DrivlyApp> {
     final themeMode = ref.watch(settingsProvider.select((s) => s.themeMode));
     ref.listen(connectionProvider.select((s) => s.isReady), (_, _) => _syncWakelock());
     ref.listen(settingsProvider.select((s) => s.keepScreenOn), (_, _) => _syncWakelock());
+    // Keeps the debug recorder running while Settings › Debug logging is on.
+    ref.listen(debugRecorderProvider, (_, _) {});
 
     return MaterialApp.router(
       title: 'Drivly',
