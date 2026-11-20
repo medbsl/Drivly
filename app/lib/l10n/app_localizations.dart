@@ -1288,6 +1288,24 @@ abstract class AppLocalizations {
   /// **'Nothing logged yet.'**
   String get logEmpty;
 
+  /// No description provided for @debugLogging.
+  ///
+  /// In en, this message translates to:
+  /// **'Debug logging'**
+  String get debugLogging;
+
+  /// No description provided for @debugLoggingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Saves connection details to a file for bug reports'**
+  String get debugLoggingHint;
+
+  /// No description provided for @shareDebugLogs.
+  ///
+  /// In en, this message translates to:
+  /// **'Share debug logs'**
+  String get shareDebugLogs;
+
   /// No description provided for @historyAndTrips.
   ///
   /// In en, this message translates to:

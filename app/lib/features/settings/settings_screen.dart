@@ -7,12 +7,14 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../app/providers.dart';
 import '../../app/theme/tokens.dart';
+import '../../core/debug_log_platform.dart';
 import '../../core/sensor_meta.dart';
 import '../../core/units.dart';
 import '../../data/settings.dart';
 import '../../shared/widgets/app_card.dart';
 import '../../app/router.dart';
 import '../connection/connection_controller.dart';
+import '../debug/debug_recorder.dart';
 
 const repoUrl = 'https://github.com/medbsl/Drivly';
 
@@ -26,6 +28,7 @@ class SettingsScreen extends ConsumerWidget {
     final ctrl = ref.read(settingsProvider.notifier);
     final conn = ref.watch(connectionProvider);
     final stats = ref.watch(storageStatsProvider).valueOrNull;
+    final debugLog = ref.watch(debugLogProvider);
 
     Widget group(List<Widget> children) => AppCard(padding: const EdgeInsets.symmetric(vertical: 4), child: Column(children: children));
 
@@ -83,6 +86,22 @@ class SettingsScreen extends ConsumerWidget {
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => context.push('/settings/log'),
             ),
+            SwitchListTile(
+              title: Text(l.debugLogging),
+              subtitle: Text(l.debugLoggingHint),
+              value: s.debugLogging,
+              onChanged: ctrl.setDebugLogging,
+            ),
+            if (s.debugLogging || debugLog.hasContent)
+              ListTile(
+                title: Text(l.shareDebugLogs),
+                trailing: const Icon(Icons.ios_share_rounded),
+                onTap: () async {
+                  try {
+                    await shareDebugLog(debugLog);
+                  } catch (_) {} // share sheet dismissed or unavailable
+                },
+              ),
           ]),
           SectionHeader(l.historyAndTrips),
           group([

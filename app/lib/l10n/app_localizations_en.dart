@@ -681,6 +681,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logEmpty => 'Nothing logged yet.';
 
   @override
+  String get debugLogging => 'Debug logging';
+
+  @override
+  String get debugLoggingHint =>
+      'Saves connection details to a file for bug reports';
+
+  @override
+  String get shareDebugLogs => 'Share debug logs';
+
+  @override
   String get historyAndTrips => 'History & trips';
 
   @override
