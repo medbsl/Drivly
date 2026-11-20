@@ -415,6 +415,14 @@
   "errAdapterBody": "Unplug it, wait 10 seconds, plug it back in.",
   "errCarTitle": "Your car isn't answering",
   "errCarBody": "Turn the ignition on, or start the engine, and try again.",
+  "errDetails": "Details: {detail}",
+  "@errDetails": {
+    "placeholders": {
+      "detail": {
+        "type": "String"
+      }
+    }
+  },
   "errGenericTitle": "Something went wrong",
   "errGenericBody": "Try again. If it keeps happening, share the adapter log with us.",
   "onbWelcomeTitle": "Welcome to Drivly",

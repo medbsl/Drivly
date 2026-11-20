@@ -24,6 +24,7 @@ class ConnectionErrorView extends ConsumerWidget {
       ConnPhase.carNotResponding => (Icons.no_crash_outlined, l.errCarTitle, l.errCarBody),
       _ => (Icons.error_outline_rounded, l.errGenericTitle, l.errGenericBody),
     };
+    final detail = state.detail?.trim() ?? '';
     return EmptyState(
       icon: icon,
       tone: StatusTone.warn,
@@ -31,14 +32,30 @@ class ConnectionErrorView extends ConsumerWidget {
       body: body,
       primaryLabel: l.tryAgain,
       onPrimary: ctrl.retry,
-      secondaryLabel: state.phase == ConnPhase.adapterNotResponding ? l.adapterLog : l.chooseAnother,
-      onSecondary: state.phase == ConnPhase.adapterNotResponding
-          ? () => context.push('/settings/log')
-          : (onChooseAnother ??
-              () {
-                ctrl.disconnect();
-                context.push('/connect');
-              }),
+      secondaryLabel: l.chooseAnother,
+      onSecondary: onChooseAnother ??
+          () {
+            ctrl.disconnect();
+            context.push('/connect');
+          },
+      // What the adapter or car actually said: one screenshot is enough for
+      // a bug report, and the full log is a tap away.
+      footer: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (detail.isNotEmpty)
+            SelectableText(
+              l.errDetails(detail),
+              textAlign: TextAlign.center,
+              style: context.text.bodySmall?.copyWith(color: context.colors.textMuted),
+            ),
+          TextButton.icon(
+            onPressed: () => context.push('/settings/log'),
+            icon: const Icon(Icons.receipt_long_rounded, size: 18),
+            label: Text(l.adapterLog),
+          ),
+        ],
+      ),
     );
   }
 }

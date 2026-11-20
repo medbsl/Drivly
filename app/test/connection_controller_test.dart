@@ -108,6 +108,7 @@ void main() {
     final ctrl = c.read(connectionProvider.notifier);
     await ctrl.connectBle('AA:BB', 'OBDII');
     expect(c.read(connectionProvider).phase, ConnPhase.carNotResponding);
+    expect(c.read(connectionProvider).detail, 'UNABLE TO CONNECT', reason: 'what the car said, for the error screen');
     expect(c.read(settingsProvider).savedAdapterId, isNull);
 
     bench.car.ignitionOn = true;

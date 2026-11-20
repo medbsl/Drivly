@@ -13,6 +13,7 @@ class EmptyState extends StatelessWidget {
     this.onPrimary,
     this.secondaryLabel,
     this.onSecondary,
+    this.footer,
     this.tone = StatusTone.accent,
   });
 
@@ -23,6 +24,9 @@ class EmptyState extends StatelessWidget {
   final VoidCallback? onPrimary;
   final String? secondaryLabel;
   final VoidCallback? onSecondary;
+
+  /// Shown under the buttons, e.g. technical details for a bug report.
+  final Widget? footer;
   final StatusTone tone;
 
   @override
@@ -55,6 +59,10 @@ class EmptyState extends StatelessWidget {
           if (secondaryLabel != null) ...[
             const SizedBox(height: Space.s),
             TextButton(onPressed: onSecondary, child: Text(secondaryLabel!)),
+          ],
+          if (footer != null) ...[
+            const SizedBox(height: Space.l),
+            footer!,
           ],
         ],
       ),

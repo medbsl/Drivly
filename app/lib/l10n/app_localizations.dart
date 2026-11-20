@@ -1617,6 +1617,12 @@ abstract class AppLocalizations {
   /// **'Turn the ignition on, or start the engine, and try again.'**
   String get errCarBody;
 
+  /// No description provided for @errDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details: {detail}'**
+  String errDetails(String detail);
+
   /// No description provided for @errGenericTitle.
   ///
   /// In en, this message translates to:

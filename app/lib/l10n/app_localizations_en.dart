@@ -867,6 +867,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Turn the ignition on, or start the engine, and try again.';
 
   @override
+  String errDetails(String detail) {
+    return 'Details: $detail';
+  }
+
+  @override
   String get errGenericTitle => 'Something went wrong';
 
   @override
