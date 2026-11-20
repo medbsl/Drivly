@@ -47,11 +47,11 @@ class AdapterLog {
   void clear() => _entries.clear();
 
   /// Text export. VINs (17 chars, no I/O/Q) are masked unless [includeVin].
-  String export({bool includeVin = false}) {
-    final vin = RegExp(r'\b[A-HJ-NPR-Z0-9]{17}\b');
-    return _entries.map((e) {
-      final s = e.toString();
-      return includeVin ? s : s.replaceAllMapped(vin, (m) => '${m[0]!.substring(0, 3)}••••••••••••••');
-    }).join('\n');
-  }
+  String export({bool includeVin = false}) =>
+      _entries.map((e) => includeVin ? e.toString() : maskVins(e.toString())).join('\n');
 }
+
+final _vin = RegExp(r'\b[A-HJ-NPR-Z0-9]{17}\b');
+
+/// Hides all but the first 3 characters (the maker code) of every VIN in [text].
+String maskVins(String text) => text.replaceAllMapped(_vin, (m) => '${m[0]!.substring(0, 3)}••••••••••••••');
