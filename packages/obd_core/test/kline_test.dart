@@ -40,4 +40,26 @@ void main() {
       expect((rpm as Ok<List<SensorReading>>).value.single.value, 800);
     });
   }
+
+  test('starts with the reply Mohamed\'s Golf 5 really gave (dots left over from the search)', () async {
+    final t = FakeTransport((cmd) => cmd == '0100' ? 'SEARCHING...\r..86F1104100BE3EE811BD' : _golf5(cmd, dpn: 'A4'));
+    await t.connect();
+    final a = Elm327Adapter(t, timeoutScale: 0.05);
+    final r = await a.initialize();
+    expect(r, isA<Ok<AdapterInfo>>(), reason: '$r');
+    expect((r as Ok<AdapterInfo>).value.supportedPids, containsAll([0x01, 0x04, 0x05, 0x0C, 0x0D]));
+  });
+
+  test('reads the VIN from the five K-line messages', () async {
+    const vin = 'WVWZZZ1KZ5W123456';
+    final chars = [0, 0, 0, ...vin.codeUnits];
+    final reply = [
+      for (var i = 0; i < 5; i++) _kline([0x87, 0xF1, 0x10], [0x49, 0x02, i + 1, ...chars.sublist(i * 4, i * 4 + 4)]),
+    ].join('\r');
+    final t = FakeTransport((cmd) => cmd == '0902' ? reply : _golf5(cmd));
+    await t.connect();
+    final a = Elm327Adapter(t, timeoutScale: 0.05);
+    await a.initialize();
+    expect((await a.readVin()).valueOrNull, vin);
+  });
 }

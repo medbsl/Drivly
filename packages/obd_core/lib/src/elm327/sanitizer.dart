@@ -18,6 +18,11 @@ List<String> sanitizeResponse(String raw, {String? command}) {
       line = line.replaceFirst(RegExp(r'^SEARCHING\.*'), '').trim();
       if (line.isEmpty) continue;
     }
+    // Others print more search-progress dots before the reply, as on a K-line
+    // VW Golf 5: "SEARCHING...\r..86F1104100BE3EE811BD". No reply line starts
+    // with a dot ("BUS INIT: ...OK" has them mid-line).
+    line = line.replaceFirst(RegExp(r'^\.+'), '').trim();
+    if (line.isEmpty) continue;
     if (line.startsWith('BUS INIT') && !line.contains('ERROR')) continue;
     out.add(line);
   }

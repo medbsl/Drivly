@@ -33,6 +33,12 @@ void main() {
       );
     });
 
+    test('drops the progress dots a clone leaves before the reply (VW Golf 5, K-line)', () {
+      // Exact reply logged from Mohamed's adapter on 2026-11-20.
+      expect(sanitizeResponse('SEARCHING...\r..86F1104100BE3EE811BD\r\r', command: '0100'), ['86F1104100BE3EE811BD']);
+      expect(sanitizeResponse('SEARCHING...\r..UNABLE TO CONNECT\r\r', command: '0100'), ['UNABLE TO CONNECT']);
+    });
+
     test('keeps data that follows SEARCHING on the same line', () {
       expect(sanitizeResponse('SEARCHING...41 00 BE 1F B8 10\r'), ['41 00 BE 1F B8 10']);
     });
